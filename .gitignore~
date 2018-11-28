@@ -1,7 +1,0 @@
-.git
-.vagrant
-.vagrant/*
-ubuntu-xenial-16.04-cloudimg-console.log
-hosts
-id_rsa
-id_rsa.pub
