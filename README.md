@@ -14,6 +14,6 @@ $ wget https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/config.yaml
 ```
 $ vagrant up 
 ```
-https://asciinema.org/a/hR8ZUclH2kax0563STbsBIqhN
+
 * Cluster deployment demo (~10mins)
-[![asciicast](https://asciinema.org/a/hR8ZUclH2kax0563STbsBIqhN.png)](https://asciinema.org/a/hR8ZUclH2kax0563STbsBIqhN)
+[![Cluster deployment demo](https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/k8s-demo.png)](https://www.youtube.com/watch?v=5bSrwGvdWw0&hd=1 "Cluster deployment demo")
