@@ -14,7 +14,7 @@
 instance=${1}
 IP=${2}
 KUBERNETES_ADDRESS=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" '$1 ~ /ip/{print $2}'|head -1)
-sudo sed -i "s/${instance}/d" /etc/hosts
+sudo sed -i "/${instance}/d" /etc/hosts
 echo "${IP} ${instance}" | sudo tee -a /etc/hosts
 
 #MASTER_NODE=$(grep -w $(grep -w Master -B 2  ~/.k8sconfig |grep name: |awk '{print $3}') /etc/hosts |awk '{print $1}'|head -1)
