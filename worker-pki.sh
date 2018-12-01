@@ -13,7 +13,16 @@
 
 instance=${1}
 IP=${2}
-KUBERNETES_ADDRESS=$(grep -w $(grep -w Master -B 2  ~/.k8sconfig |grep name: |awk '{print $3}') /etc/hosts |awk '{print $1}')
+KUBERNETES_ADDRESS=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" '$1 ~ /ip/{print $2}'|head -1)
+echo "${IP} ${instance}" | sudo tee -a /etc/hosts
+
+#MASTER_NODE=$(grep -w $(grep -w Master -B 2  ~/.k8sconfig |grep name: |awk '{print $3}') /etc/hosts |awk '{print $1}'|head -1)
+ALL_NODES=$(while read line ; do echo $line |egrep -v "127.0|::|#|^$"; done</etc/hosts |awk '{print $1}')
+sudo cp -p  /etc/hosts  /etc/hosts.new
+for HOST in ${ALL_NODES}
+do
+  scp /etc/hosts.new ${HOST}:/tmp/hosts.new
+done
 echo "[SCRIPT][KUBECONFIG][INFO] Creating kubeconfigs for worker node ${instance} - ${IP}"
 cat > ${instance}-csr.json <<EOF
 {
