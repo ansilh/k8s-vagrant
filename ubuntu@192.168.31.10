@@ -22,7 +22,6 @@ do
 done
 echo "[SCRIPT][KUBECONFIG][INFO] Creating kubeconfigs for worker node ${instance} - ${IP}"
 cat > ${instance}-csr.json <<EOF
-{
   "CN": "system:node:${instance}",
   "key": {
     "algo": "rsa",
@@ -36,8 +35,6 @@ cat > ${instance}-csr.json <<EOF
       "OU": "Kubernetes The Hard Way with vBox",
       "ST": "Karnataka"
     }
-  ]
-}
 EOF
 # Generate kubelet file
 cfssl gencert \
