@@ -16,6 +16,7 @@ echo "${IP} ${instance}" | sudo tee -a /etc/hosts
 ALL_NODES=$(while read line ; do echo $line |egrep -v "127.0|::|#|^$"; done</etc/hosts |awk '{print $1}')
 sudo cp -p  /etc/hosts  /etc/hosts.new
 for HOST in ${ALL_NODES}
+do
   scp -oStrictHostKeyChecking=no /etc/hosts.new ${HOST}:/tmp/hosts.new
   ssh -t -oStrictHostKeyChecking=no ${HOST} "sudo mv /tmp/hosts.new /etc/hosts"
 done
