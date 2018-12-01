@@ -22,7 +22,7 @@ ALL_NODES=$(while read line ; do echo $line |egrep -v "127.0|::|#|^$"; done</etc
 sudo cp -p  /etc/hosts  /etc/hosts.new
 for HOST in ${ALL_NODES}
 do
-  scp /etc/hosts.new ${HOST}:/tmp/hosts.new
+  scp -oStrictHostKeyChecking=no /etc/hosts.new ${HOST}:/tmp/hosts.new
 done
 echo "[SCRIPT][KUBECONFIG][INFO] Creating kubeconfigs for worker node ${instance} - ${IP}"
 cat > ${instance}-csr.json <<EOF
