@@ -6,7 +6,7 @@
 # - Copy files to all master and worker nodes
 #----------------------------------------------------
 # Author: Ansil H (ansilh@gmail.com)
-# Date:   11/30/2018
+# Date:   12/01/2018
 #----------------------------------------------------
 
 # Generate certificates
@@ -17,12 +17,13 @@ KUBERNETES_ADDRESS=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" 
 sudo sed -i "/${instance}/d" /etc/hosts
 echo "${IP} ${instance}" | sudo tee -a /etc/hosts
 
-#MASTER_NODE=$(grep -w $(grep -w Master -B 2  ~/.k8sconfig |grep name: |awk '{print $3}') /etc/hosts |awk '{print $1}'|head -1)
+
 ALL_NODES=$(while read line ; do echo $line |egrep -v "127.0|::|#|^$"; done</etc/hosts |awk '{print $1}')
 sudo cp -p  /etc/hosts  /etc/hosts.new
 for HOST in ${ALL_NODES}
 do
   scp -oStrictHostKeyChecking=no /etc/hosts.new ${HOST}:/tmp/hosts.new
+  ssh -t -oStrictHostKeyChecking=no ${HOST} "sudo mv /tmp/hosts.new /etc/hosts"
 done
 echo "[SCRIPT][KUBECONFIG][INFO] Creating kubeconfigs for worker node ${instance} - ${IP}"
 cat > ${instance}-csr.json <<EOF
