@@ -10,6 +10,7 @@
 #----------------------------------------------------
 echo "[SCRIPT][CONTROLLER][INFO] Installing 'jq'..."
 {
+  export DEBIAN_FRONTEND=noninteractive
   sudo apt-get update >/dev/null
   sudo apt-get -y install jq >/dev/null
 }
@@ -20,7 +21,7 @@ echo "[SCRIPT][CONTROLLER][INFO] Installing 'jq'..."
 
 api_status(){
 echo "[SCRIPT][CONTROLLER][INFO] Waiting for API to initialize.."
-MASTER=$(grep -w $(grep -w Master -B 2  ~/.k8sconfig |grep name: |awk '{print $3}') /etc/hosts |awk '{print $1}'|head -1)
+MASTER=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" '$1 ~ /ip/{print $2}'|head -1)
 while true
 do
   API_STATUS=$(curl -s -w '%{http_code}' --connect-timeout 1 --max-time 1 \
@@ -43,7 +44,7 @@ sudo mkdir -p /etc/kubernetes/config
   sudo mv kube-apiserver kube-controller-manager kube-scheduler /usr/local/bin/
 }
 {
-  MASTER=$(grep -w $(grep -w Master -B 2  ~/.k8sconfig |grep name: |awk '{print $3}') /etc/hosts |awk '{print $2}'|head -1)
+  MASTER=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" '$1 ~ /ip/{print $2}'|head -1)
   echo "[SCRIPT][CONTROLLER][INFO] Downloading Certs from ${MASTER}"
   scp -oStrictHostKeyChecking=no ${MASTER}:~/PKI/ca.pem .
   scp -oStrictHostKeyChecking=no ${MASTER}:~/PKI/ca-key.pem .
@@ -66,7 +67,7 @@ sudo mkdir -p /etc/kubernetes/config
     service-account-key.pem service-account.pem \
     encryption-config.yaml front-proxy-ca.pem front-proxy.pem front-proxy-key.pem /var/lib/kubernetes/
 }
-INTERNAL_IP=$(grep -w $(hostname) /etc/hosts |awk '{print $1}')
+INTERNAL_IP=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" '$1 ~ /ip/{print $2}'|head -1)
 cat <<EOF | sudo tee /etc/systemd/system/kube-apiserver.service >/dev/null
 [Unit]
 Description=Kubernetes API Server

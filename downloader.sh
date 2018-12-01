@@ -84,7 +84,8 @@ then
 	"https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/etcd.yaml" \
 	"https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/rbac.yaml" \
 	"https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/calico.yaml" \
-	"https://raw.githubusercontent.com/ansilh/kubernetes-the-hardway-virtualbox/master/config/coredns.yaml"
+	"https://raw.githubusercontent.com/ansilh/kubernetes-the-hardway-virtualbox/master/config/coredns.yaml" \
+  "https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/worker-pki.sh"
   do
 		get_bins "${BIN_URL}"
 	done
@@ -93,7 +94,6 @@ else
 	"https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.12.0/crictl-v1.12.0-linux-amd64.tar.gz" \
 	"https://storage.googleapis.com/kubernetes-the-hard-way/runsc-50c283b9f56bb7200938d9e207355f05f79f0d17" \
 	"https://github.com/opencontainers/runc/releases/download/v1.0.0-rc5/runc.amd64" \
-	"https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-amd64-v0.6.0.tgz" \
 	"https://github.com/containerd/containerd/releases/download/v1.2.0-rc.0/containerd-1.2.0-rc.0.linux-amd64.tar.gz" \
 	"https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/linux/amd64/kubectl" \
 	"https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/linux/amd64/kube-proxy" \

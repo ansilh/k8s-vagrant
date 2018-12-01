@@ -8,5 +8,3 @@
   type: Worker
   box: 'ubuntu/xenial64'
   boxVersion: '20181109.0.0'
-
-  

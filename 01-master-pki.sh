@@ -15,9 +15,11 @@ echo "[SCRIPT][PKI][INFO] Bin setup."
   chmod +x cfssl_linux-amd64 cfssljson_linux-amd64
   sudo  mv cfssl_linux-amd64 /usr/local/bin/cfssl
   sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssljson
+  chmod +x worker-pki.sh
 }
 echo "[SCRIPT][PKI][INFO] Creating PKI Infrastructure"
 mkdir PKI
+mv worker-pki.sh PKI/
 cd PKI
 echo "[SCRIPT][PKI][INFO] Creating CA"
 cat <<EOF >ca-config.json
@@ -92,39 +94,8 @@ cfssl gencert \
 
 }
 
-WORKER_NODES=$(grep -w Worker -B 2  ~/.k8sconfig |grep name: |awk '{print $3}')
-MASTERS=$(grep -w $(grep -w Master -B 2  ~/.k8sconfig |grep name: |awk '{print $3}') /etc/hosts |awk '{print $2}')
 
-echo "[SCRIPT][PKI][INFO] Worker Certs for ${WORKER_NODES} ${MASTERS}"
-for instance in ${WORKER_NODES} ${MASTERS}; do
-cat > ${instance}-csr.json <<EOF
-{
-  "CN": "system:node:${instance}",
-  "key": {
-    "algo": "rsa",
-    "size": 2048
-  },
-  "names": [
-    {
-      "C": "IN",
-      "L": "Bangalore",
-      "O": "system:masters",
-      "OU": "Kubernetes The Hard Way with vBox",
-      "ST": "Karnataka"
-    }
-  ]
-}
-EOF
-IP=$(grep -w ${instance} /etc/hosts |awk '{print $1}')
-
-cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
-  -config=ca-config.json \
-  -hostname=${instance},${IP} \
-  -profile=kubernetes \
-  ${instance}-csr.json 2>/dev/null| cfssljson -bare ${instance}
-done
+KUBERNETES_ADDRESS=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" '$1 ~ /ip/{print $2}'|head -1)
 
 {
 
@@ -219,7 +190,7 @@ cfssl gencert \
 }
 
 {
-KUBERNETES_ADDRESS=$(grep -w $(grep -w Master -B 2  ~/.k8sconfig |grep name: |awk '{print $3}') /etc/hosts |awk '{print $1}')
+
 echo "[SCRIPT][PKI][INFO] Worker Certs for kube-apiserver ${KUBERNETES_ADDRESS}"
 
 cat > kubernetes-csr.json <<EOF
@@ -281,28 +252,7 @@ cfssl gencert \
   service-account-csr.json 2>/dev/null| cfssljson -bare service-account
 
 }
-#-----------------
-echo "[SCRIPT][KUBECONFIG][INFO] Creating kubeconfigs for worker nodes ${WORKER_NODES} ${MASTERS}"
-for instance in ${WORKER_NODES} ${MASTERS}; do
-  kubectl config set-cluster kubernetes-the-hard-way \
-    --certificate-authority=ca.pem \
-    --embed-certs=true \
-    --server=https://${KUBERNETES_ADDRESS}:6443 \
-    --kubeconfig=${instance}.kubeconfig >/dev/null
 
-  kubectl config set-credentials system:node:${instance} \
-    --client-certificate=${instance}.pem \
-    --client-key=${instance}-key.pem \
-    --embed-certs=true \
-    --kubeconfig=${instance}.kubeconfig >/dev/null
-
-  kubectl config set-context default \
-    --cluster=kubernetes-the-hard-way \
-    --user=system:node:${instance} \
-    --kubeconfig=${instance}.kubeconfig >/dev/null
-
-  kubectl config use-context default --kubeconfig=${instance}.kubeconfig >/dev/null
-done
 echo "[SCRIPT][KUBECONFIG][INFO] Creating kubeconfigs for  kube-proxy"
 
 {

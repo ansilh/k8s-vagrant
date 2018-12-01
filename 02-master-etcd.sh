@@ -14,7 +14,7 @@
   sudo mv etcd-v3.3.9-linux-amd64/etcd* /usr/local/bin/
 }
 {
-  MASTER=$(grep -w $(grep -w Master -B 2  ~/.k8sconfig |grep name: |awk '{print $3}') /etc/hosts |awk '{print $2}'|head -1)
+  MASTER=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" '$1 ~ /name/{print $2}'|head -1)
   echo "[SCRIPT][ETCD][INFO] Downloading Certs from Master ${MASTER}"
   scp -oStrictHostKeyChecking=no ${MASTER}:~/PKI/kubernetes-key.pem .
   scp -oStrictHostKeyChecking=no ${MASTER}:~/PKI/kubernetes.pem .
@@ -24,7 +24,7 @@
   sudo mkdir -p /etc/etcd /var/lib/etcd
   sudo cp ca.pem kubernetes-key.pem kubernetes.pem /etc/etcd/
 }
-INTERNAL_IP=$(grep -w $(hostname) /etc/hosts |awk '{print $1}')
+INTERNAL_IP=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" '$1 ~ /ip/{print $2}'|head -1)
 ETCD_NAME=$(hostname -s)
 echo "[SCRIPT][ETCD][INFO] Setting up etcd.."
 echo "[SCRIPT][ETCD][INFO] Etcd IP and name - ${INTERNAL_IP}, ${ETCD_NAME}"

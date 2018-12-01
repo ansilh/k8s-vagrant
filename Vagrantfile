@@ -17,31 +17,26 @@ else
   raise "Configuration file 'config.yaml' does not exist."
 end
 
-# Host file for name resolution
-
-hostFile = File.new('hosts', 'wb')
-hostFile.write("127.0.0.1\tlocalhost\n")
-conf.each do |host|
- hostFile.write("#{host['ip']}\t#{host['name']}\n")
-end
-hostFile.close
-
 # Generate SSH key files to bootstrap kubernetes workers
+# Need to add condition check to make sure keys were not overwritten
+if(File.file?('id_rsa'))
+  puts 'Key file exists'
+else
+  key = OpenSSL::PKey::RSA.new 2048
 
-key = OpenSSL::PKey::RSA.new 2048
+  private_key = key.to_pem()
+  type = key.ssh_type
+  data = [ key.public_key.to_blob ].pack('m0')
+  public_key = "#{type} #{data}"
 
-private_key = key.to_pem()
-type = key.ssh_type
-data = [ key.public_key.to_blob ].pack('m0')
-public_key = "#{type} #{data}"
+  rsaFile = File.new('id_rsa', 'wb')
+  rsaFile.write("#{private_key}")
+  rsaFile.close
 
-rsaFile = File.new('id_rsa', 'wb')
-rsaFile.write("#{private_key}")
-rsaFile.close
-
-rsaPubFile = File.new('id_rsa.pub', 'wb')
-rsaPubFile.write(public_key)
-rsaPubFile.close
+  rsaPubFile = File.new('id_rsa.pub', 'wb')
+  rsaPubFile.write(public_key)
+  rsaPubFile.close
+end
 
 # Script for both compute and control plane
 
@@ -50,7 +45,8 @@ echo "Dummy scriipt hook for future use"
 SCRIPT
 
 # TODO: Move script to github and integrate in workflow
-GIT_BASE_URL = 'https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/'
+#GIT_BASE_URL = 'https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/'
+GIT_BASE_URL = ''
 
 $keygen = <<-KEYGEN
 echo "[SCRIPT][INFO] Changing password of user 'ubuntu'"
@@ -76,15 +72,15 @@ Vagrant.configure("2") do |config|
 			node.vm.hostname = host['name']
 			node.vm.network :private_network, ip: host['ip']
 			node.vm.provision "file", source: "config.yaml", destination: "~/.k8sconfig.win"
-			node.vm.provision "file", source: "hosts", destination: "~/.hosts.win"
-			node.vm.provision "shell", inline: "tr -d '\015' </home/vagrant/.hosts.win >/home/vagrant/.hosts"
+#			node.vm.provision "file", source: "hosts", destination: "~/.hosts.win"
+#			node.vm.provision "shell", inline: "tr -d '\015' </home/vagrant/.hosts.win >/home/vagrant/.hosts"
 			node.vm.provision "shell", inline: "tr -d '\015' </home/vagrant/.k8sconfig.win >/home/vagrant/.k8sconfig"
 			node.vm.provision "shell", inline: $keygen
 			ssh_pub_key = File.readlines("id_rsa.pub").first.strip
-			node.vm.provision "shell" do |s|
-				s.inline = "cp /home/vagrant/.hosts /etc/hosts"
-				s.privileged = true
-			end
+#			node.vm.provision "shell" do |s|
+#				s.inline = "cp /home/vagrant/.hosts /etc/hosts"
+#				s.privileged = true
+#			end
 
 			node.vm.provision 'shell', inline: $script, args: [host['type'], "test"]
 			node.vm.provider :virtualbox do |vb|

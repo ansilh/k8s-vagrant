@@ -18,7 +18,7 @@ add_label_taint(){
   cat /var/lib/kubelet/kubeconfig|awk '/client-certificate-data:/{print $2}' |base64 -d >cert-curl.pem
   cat /var/lib/kubelet/kubeconfig|awk '/client-key-data:/{print $2}' |base64 -d >key-curl.pem
 
-  MASTER_NODE=$(grep -w $(grep -w Master -B 2  ~/.k8sconfig |grep name: |awk '{print $3}') /etc/hosts |awk '{print $1}'|head -1)
+  MASTER_NODE=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" '$1 ~ /ip/{print $2}'|head -1)
   NODE_NAME=$(hostname)
 
   am_i_master(){
@@ -98,12 +98,18 @@ add_label_taint(){
   fi
 }
 
+# Generate certificate
+MASTER=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" '$1 ~ /ip/{print $2}'|head -1)
+MY_IP=$(grep $(hostname) -A 1 ~/.k8sconfig |tail -1 |awk '{print $2}')
 {
+  ssh -oStrictHostKeyChecking=no ${MASTER} "cd /home/vagrant/PKI; ./worker-pki.sh $(hostname) ${MY_IP}"
+}
+{
+  export DEBIAN_FRONTEND=noninteractive
   sudo apt-get update >/dev/null
   sudo apt-get -y install socat conntrack ipset jq >/dev/null
 }
-#  /etc/cni/net.d \
-#  /opt/cni/bin \
+
 sudo mkdir -p \
   /var/lib/kubelet \
   /var/lib/kube-proxy \
@@ -116,7 +122,6 @@ sudo mkdir -p \
   chmod +x kube-proxy kubelet runc runsc
   sudo mv kube-proxy kubelet runc runsc /usr/local/bin/
   sudo tar -xvf crictl-v1.12.0-linux-amd64.tar.gz -C /usr/local/bin/ >/dev/null
-#  sudo tar -xvf cni-plugins-amd64-v0.6.0.tgz -C /opt/cni/bin/ >/dev/null
   sudo tar -xvf containerd-1.2.0-rc.0.linux-amd64.tar.gz -C / >/dev/null
 }
 
@@ -161,7 +166,7 @@ WantedBy=multi-user.target
 EOF
 
 
-MASTER=$(grep -w $(grep -w Master -B 2  ~/.k8sconfig |grep name: |awk '{print $3}') /etc/hosts |awk '{print $2}'|head -1)
+MASTER=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" '$1 ~ /name/{print $2}'|head -1)
 
 scp -oStrictHostKeyChecking=no ${MASTER}:~/PKI/${HOSTNAME}-key.pem .
 scp -oStrictHostKeyChecking=no ${MASTER}:~/PKI/${HOSTNAME}.pem .

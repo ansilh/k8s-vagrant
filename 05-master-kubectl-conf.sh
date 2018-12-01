@@ -10,7 +10,7 @@
 
 cd PKI
 {
-  KUBERNETES_ADDRESS=$(grep $(hostname) /etc/hosts |awk '{print $1}')
+  KUBERNETES_ADDRESS=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" '$1 ~ /ip/{print $2}'|head -1)
 
   kubectl config set-cluster kubernetes-the-hard-way \
     --certificate-authority=ca.pem \
@@ -31,9 +31,8 @@ cd PKI
 cd
 {
   sudo mkdir /home/ubuntu/.kube/
-  sudo bash -c "kubectl completion bash >.bash_profile;chown ${USER}:${USER} .bash_profile"
-  sudo cp .bash_profile /home/ubuntu/
+  sudo bash -c "echo 'source <(kubectl completion bash)' >>/home/ubuntu/.bashrc;chown ${USER}:${USER} .bashrc"
   sudo cp .kube/config /home/ubuntu/.kube/
   sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
-  sudo chown ubuntu:ubuntu /home/ubuntu/.bash_profile
+  sudo chown ubuntu:ubuntu /home/ubuntu/.bashrc
 }
