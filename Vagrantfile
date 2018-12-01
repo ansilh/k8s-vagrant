@@ -45,8 +45,7 @@ echo "Dummy scriipt hook for future use"
 SCRIPT
 
 # TODO: Move script to github and integrate in workflow
-#GIT_BASE_URL = 'https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/'
-GIT_BASE_URL = ''
+GIT_BASE_URL = 'https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/'
 
 $keygen = <<-KEYGEN
 echo "[SCRIPT][INFO] Changing password of user 'ubuntu'"
