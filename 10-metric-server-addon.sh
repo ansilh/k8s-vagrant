@@ -21,7 +21,7 @@ cd metric-server
 
 for FILE in ${YAMLS}
 do
-  wget https://raw.githubusercontent.com/kubernetes-incubator/metrics-server/master/deploy/1.8%2B/${FILE}
+  wget -q https://raw.githubusercontent.com/kubernetes-incubator/metrics-server/master/deploy/1.8%2B/${FILE}
 done
 
 VOLUME="\      - name: hosts\n\        hostPath:\n\         path: /etc/hosts"

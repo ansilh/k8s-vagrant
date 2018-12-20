@@ -19,7 +19,7 @@ influxdb.yaml"
 
 for FILE in ${YAML_FILES}
 do
- wget https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/${FILE}
+ wget -q https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/${FILE}
 done
 cd ..
 wget https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/rbac/heapster-rbac.yaml
