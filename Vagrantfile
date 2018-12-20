@@ -18,7 +18,7 @@ else
 end
 
 # Generate SSH key files to bootstrap kubernetes workers
-# Need to add condition check to make sure keys were not overwritten
+
 if(File.file?('id_rsa'))
   puts 'Key file exists'
 else
@@ -44,7 +44,8 @@ $script = <<-SCRIPT
 echo "Dummy scriipt hook for future use"
 SCRIPT
 
-# TODO: Move script to github and integrate in workflow
+# Download all scripts from Github repo
+# TODO : Move scripts to a different derectory
 GIT_BASE_URL = 'https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/'
 
 $keygen = <<-KEYGEN
@@ -71,16 +72,9 @@ Vagrant.configure("2") do |config|
 			node.vm.hostname = host['name']
 			node.vm.network :private_network, ip: host['ip']
 			node.vm.provision "file", source: "config.yaml", destination: "~/.k8sconfig.win"
-#			node.vm.provision "file", source: "hosts", destination: "~/.hosts.win"
-#			node.vm.provision "shell", inline: "tr -d '\015' </home/vagrant/.hosts.win >/home/vagrant/.hosts"
 			node.vm.provision "shell", inline: "tr -d '\015' </home/vagrant/.k8sconfig.win >/home/vagrant/.k8sconfig"
 			node.vm.provision "shell", inline: $keygen
 			ssh_pub_key = File.readlines("id_rsa.pub").first.strip
-#			node.vm.provision "shell" do |s|
-#				s.inline = "cp /home/vagrant/.hosts /etc/hosts"
-#				s.privileged = true
-#			end
-
 			node.vm.provision 'shell', inline: $script, args: [host['type'], "test"]
 			node.vm.provider :virtualbox do |vb|
 				vb.name = host['name']
@@ -98,9 +92,9 @@ Vagrant.configure("2") do |config|
 				node.vm.provision 'shell', path: GIT_BASE_URL + "04-master-rbac.sh", privileged: false
 				node.vm.provision 'shell', path: GIT_BASE_URL + "05-master-kubectl-conf.sh", privileged: false
 				node.vm.provision 'shell', path: GIT_BASE_URL + "06-worker.sh", privileged: false
-#				node.vm.provision 'shell', path: "07-label-taint.master.sh", privileged: false
 				node.vm.provision 'shell', path: GIT_BASE_URL + "07-master-calico.sh", privileged: false
 				node.vm.provision 'shell', path: GIT_BASE_URL + "08-coredns-addon.sh", privileged: false
+        node.vm.provision 'shell', path: GIT_BASE_URL + "09-loadbalancer-addon.sh", privileged: false
 			else
 				node.vm.provision 'shell', path: GIT_BASE_URL + "06-worker.sh", privileged: false
 			end
