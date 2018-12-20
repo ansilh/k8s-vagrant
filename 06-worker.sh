@@ -62,17 +62,16 @@ add_label_taint(){
 
   if [ ! -z "${TAINT}" ]
   then
-  TAINT_STATUS=$(curl -s -XPATCH  -H "Accept: application/json" \
-  -H "Content-Type: application/merge-patch+json" \
-  --data ${TAINT} --cacert ca-curl.pem --key key-curl.pem  --cert cert-curl.pem \
-  https://${MASTER_NODE}:6443/api/v1/nodes/$(hostname) |jq '.spec .taints[]| select(.key == "node-role.kubernetes.io/master")|.effect' 2>/dev/null |sed 's/"//g')
-
-  if [ ! -z "${TAINT_STATUS}" ] && [ "${TAINT_STATUS}" == "NoSchedule" ]
-  then
-    echo "[SCRIPT][LABEL][INFO] Tainted $(hostname)"
-  else
-    echo "[SCRIPT][LABEL][INFO] Taint failed on $(hostname)"
-  fi
+    TAINT_STATUS=$(curl -s -XPATCH  -H "Accept: application/json" \
+    -H "Content-Type: application/merge-patch+json" \
+    --data ${TAINT} --cacert ca-curl.pem --key key-curl.pem  --cert cert-curl.pem \
+    https://${MASTER_NODE}:6443/api/v1/nodes/$(hostname) |jq '.spec .taints[]| select(.key == "node-role.kubernetes.io/master")|.effect' 2>/dev/null |sed 's/"//g')
+    if [ ! -z "${TAINT_STATUS}" ] && [ "${TAINT_STATUS}" == "NoSchedule" ]
+    then
+      echo "[SCRIPT][LABEL][INFO] Tainted $(hostname)"
+    else
+      echo "[SCRIPT][LABEL][INFO] Taint failed on $(hostname)"
+    fi
   fi
 
 
