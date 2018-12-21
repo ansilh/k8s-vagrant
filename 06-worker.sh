@@ -115,13 +115,18 @@ sudo mkdir -p \
   /var/lib/kubernetes \
   /var/run/kubernetes
 
+#TODO# Add logic to retrieve versions from common place #
+
+K8S_VERSION="v1.13.0"
+CONTAINERD_VERSION="1.2.1"
+
 {
   sudo mv runsc-50c283b9f56bb7200938d9e207355f05f79f0d17 runsc
   sudo mv runc.amd64 runc
   chmod +x kube-proxy kubelet runc runsc
   sudo mv kube-proxy kubelet runc runsc /usr/local/bin/
-  sudo tar -xvf crictl-v1.12.0-linux-amd64.tar.gz -C /usr/local/bin/ >/dev/null
-  sudo tar -xvf containerd-1.2.0-rc.0.linux-amd64.tar.gz -C / >/dev/null
+  sudo tar -xvf crictl-${K8S_VERSION}-linux-amd64.tar.gz -C /usr/local/bin/ >/dev/null
+  sudo tar -xvf containerd-${CONTAINERD_VERSION}.linux-amd64.tar.gz -C / >/dev/null
 }
 
 sudo mkdir -p /etc/containerd/
