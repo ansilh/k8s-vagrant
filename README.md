@@ -2,13 +2,12 @@
 
 This project started for fun while preparing my CKA certification and there is no intention to put this as a serious project. ;)
 
-* Software Versions (updates will happen soon)
-  - k8s Version: v12.0.1
+* Software Versions
+  - Vagrant Box : ubuntu/xenial64 (20181217.0.0)
+  - k8s Version: v1.13.0
   - etcd Version: v3.3.9
-  - containerd Version: v1.2.0-rc.0
-  - runc Version: v1.0.0-rc5
-
-* Network plugin - Calico
+  - containerd Version: v1.2.1
+  - runc Version: 1.0.0-rc6
 
 * AddOns included
   - MetalLB loadbalancer
@@ -34,7 +33,11 @@ $ wget https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/config.yaml
 ```
 $ vagrant up
 ```
-
+* Default username and password to logon to nodes
+```
+User :ubuntu
+Password: nutanix
+```
 * Cluster deployment demo (~10mins)
 
  [![Cluster deployment demo](https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/k8s-demo.png)](https://www.youtube.com/watch?v=5bSrwGvdWw0&hd=1 "Cluster deployment demo")

@@ -2,9 +2,9 @@
   ip: 192.168.31.10
   type: Master
   box: 'ubuntu/xenial64'
-  boxVersion: '20181109.0.0'
+  boxVersion: '20181217.0.0'
 - name: k8s-worker-01
   ip: 192.168.31.11
   type: Worker
   box: 'ubuntu/xenial64'
-  boxVersion: '20181109.0.0'
+  boxVersion: '20181217.0.0'
