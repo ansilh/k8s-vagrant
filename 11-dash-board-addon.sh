@@ -1,3 +1,14 @@
+#!/usr/bin/env bash
+
+#----------------------------------------------------
+# Scripts does below
+# - Downloads all yamls files for DashBoard
+# - Modifies heapster to use proper source
+# - Modifies the role to access node/stat for heapster
+#----------------------------------------------------
+# Author: Ansil H (ansilh@gmail.com)
+# Date:   12/21/2018
+#----------------------------------------------------
 
 X="- apiGroups:
   - \"\"
@@ -22,7 +33,7 @@ do
  wget -q https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/${FILE}
 done
 cd ..
-wget https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/rbac/heapster-rbac.yaml
+wget -q https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/rbac/heapster-rbac.yaml
 
 sed -i 's@--source=kubernetes:https://kubernetes\.default@--source=kubernetes.summary_api:https://kubernetes.default?kubeletHttps=true\&kubeletPort=10250\&insecure=true@' dash-board/heapster.yaml
 
