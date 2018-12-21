@@ -7,6 +7,9 @@
 # Author: Ansil H (ansilh@gmail.com)
 # Date:   11/25/2018
 #----------------------------------------------------
+K8S_VERSION="v1.13.0"
+CONTAINERD_VERSION="1.2.1"
+RUNC_VERSION="1.0.0-rc6"
 CONTENT_LEN=0
 get_file_size(){
   # Get the size of the file by reading header
@@ -70,17 +73,17 @@ then
 	for BIN_URL in  \
   "https://pkg.cfssl.org/R1.2/cfssl_linux-amd64" \
   "https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64" \
-  "https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/linux/amd64/kube-apiserver" \
-  "https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/linux/amd64/kube-controller-manager" \
-  "https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/linux/amd64/kube-scheduler" \
-	"https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/linux/amd64/kubectl" \
+  "https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kube-apiserver" \
+  "https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kube-controller-manager" \
+  "https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kube-scheduler" \
+	"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubectl" \
 	"https://github.com/coreos/etcd/releases/download/v3.3.9/etcd-v3.3.9-linux-amd64.tar.gz" \
-	"https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.12.0/crictl-v1.12.0-linux-amd64.tar.gz" \
+	"https://github.com/kubernetes-sigs/cri-tools/releases/download/${K8S_VERSION}/crictl-${K8S_VERSION}-linux-amd64.tar.gz" \
 	"https://storage.googleapis.com/kubernetes-the-hard-way/runsc-50c283b9f56bb7200938d9e207355f05f79f0d17" \
-	"https://github.com/opencontainers/runc/releases/download/v1.0.0-rc5/runc.amd64" \
-	"https://github.com/containerd/containerd/releases/download/v1.2.0-rc.0/containerd-1.2.0-rc.0.linux-amd64.tar.gz" \
-	"https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/linux/amd64/kube-proxy" \
-	"https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/linux/amd64/kubelet" \
+	"https://github.com/opencontainers/runc/releases/download/${RUNC_VERSION}/runc.amd64" \
+	"https://github.com/containerd/containerd/releases/download/${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}.linux-amd64.tar.gz" \
+	"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kube-proxy" \
+	"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubelet" \
 	"https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/etcd.yaml" \
 	"https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/rbac.yaml" \
 	"https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/calico.yaml" \
@@ -91,13 +94,13 @@ then
 	done
 else
 	for BIN_URL in  \
-	"https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.12.0/crictl-v1.12.0-linux-amd64.tar.gz" \
+	"https://github.com/kubernetes-sigs/cri-tools/releases/download/${K8S_VERSION}/crictl-${K8S_VERSION}-linux-amd64.tar.gz" \
 	"https://storage.googleapis.com/kubernetes-the-hard-way/runsc-50c283b9f56bb7200938d9e207355f05f79f0d17" \
-	"https://github.com/opencontainers/runc/releases/download/v1.0.0-rc5/runc.amd64" \
-	"https://github.com/containerd/containerd/releases/download/v1.2.0-rc.0/containerd-1.2.0-rc.0.linux-amd64.tar.gz" \
-	"https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/linux/amd64/kubectl" \
-	"https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/linux/amd64/kube-proxy" \
-	"https://storage.googleapis.com/kubernetes-release/release/v1.12.0/bin/linux/amd64/kubelet"
+	"https://github.com/opencontainers/runc/releases/download/${RUNC_VERSION}/runc.amd64" \
+	"https://github.com/containerd/containerd/releases/download/${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}.linux-amd64.tar.gz" \
+	"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubectl" \
+	"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kube-proxy" \
+	"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubelet"
 	do
 		get_bins "${BIN_URL}"
 	done
