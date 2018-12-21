@@ -147,7 +147,7 @@ WantedBy=multi-user.target
 EOF
 sudo mv kube-scheduler.kubeconfig /var/lib/kubernetes/
 cat <<EOF | sudo tee /etc/kubernetes/config/kube-scheduler.yaml >/dev/null
-apiVersion: componentconfig/v1alpha1
+apiVersion: kubescheduler.config.k8s.io/v1alpha1
 kind: KubeSchedulerConfiguration
 clientConnection:
   kubeconfig: "/var/lib/kubernetes/kube-scheduler.kubeconfig"
