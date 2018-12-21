@@ -9,7 +9,7 @@
 #----------------------------------------------------
 K8S_VERSION="v1.13.0"
 CONTAINERD_VERSION="1.2.1"
-RUNC_VERSION="1.0.0-rc6"
+RUNC_VERSION="v1.0.0-rc6"
 CONTENT_LEN=0
 get_file_size(){
   # Get the size of the file by reading header
