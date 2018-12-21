@@ -104,7 +104,7 @@ MY_IP=$(grep $(hostname) -A 1 ~/.k8sconfig |tail -1 |awk '{print $2}')
   ssh -oStrictHostKeyChecking=no ${MASTER} "cd /home/vagrant/PKI; ./worker-pki.sh $(hostname) ${MY_IP}"
 }
 {
-  export DEBIAN_FRONTEND=noninteractive
+  #export DEBIAN_FRONTEND=noninteractive
   sudo apt-get update >/dev/null
   sudo apt-get -y install socat conntrack ipset jq >/dev/null
 }

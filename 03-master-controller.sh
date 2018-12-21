@@ -10,7 +10,7 @@
 #----------------------------------------------------
 echo "[SCRIPT][CONTROLLER][INFO] Installing 'jq'..."
 {
-  export DEBIAN_FRONTEND=noninteractive
+  #export DEBIAN_FRONTEND=noninteractive
   sudo apt-get update >/dev/null
   sudo apt-get -y install jq >/dev/null
 }
