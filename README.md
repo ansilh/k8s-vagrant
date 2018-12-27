@@ -14,9 +14,9 @@ This project started for fun while preparing my CKA certification and there is n
   - DashBoard
   - Grafana
   - MetricServer
-
+  - Traefik Ingress controller
 * Future AddOns
-  - Ingress controller - Traefik
+  - Prometheus
 
 * How to Setup
   - [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
