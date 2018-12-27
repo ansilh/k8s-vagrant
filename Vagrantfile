@@ -97,7 +97,7 @@ Vagrant.configure("2") do |config|
 				node.vm.provision 'shell', path: GIT_BASE_URL + "09-loadbalancer-addon.sh", privileged: false
 				node.vm.provision 'shell', path: GIT_BASE_URL + "10-metric-server-addon.sh", privileged: false
 				node.vm.provision 'shell', path: GIT_BASE_URL + "11-dash-board-addon.sh", privileged: false
-        node.vm.provision 'shell', path: GIT_BASE_URL + "12-ingress-controller.sh", privileged: false
+				node.vm.provision 'shell', path: GIT_BASE_URL + "12-ingress-controller.sh", privileged: false
 			else
 				node.vm.provision 'shell', path: GIT_BASE_URL + "06-worker.sh", privileged: false
 			end
