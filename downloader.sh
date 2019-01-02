@@ -71,24 +71,24 @@ get_bins(){
 if [ ${1} == "Master" ]
 then
 	for BIN_URL in  \
-  "https://pkg.cfssl.org/R1.2/cfssl_linux-amd64" \
-  "https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64" \
-  "https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kube-apiserver" \
-  "https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kube-controller-manager" \
-  "https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kube-scheduler" \
-	"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubectl" \
-	"https://github.com/coreos/etcd/releases/download/v3.3.9/etcd-v3.3.9-linux-amd64.tar.gz" \
-	"https://github.com/kubernetes-sigs/cri-tools/releases/download/${K8S_VERSION}/crictl-${K8S_VERSION}-linux-amd64.tar.gz" \
-	"https://storage.googleapis.com/kubernetes-the-hard-way/runsc-50c283b9f56bb7200938d9e207355f05f79f0d17" \
-	"https://github.com/opencontainers/runc/releases/download/${RUNC_VERSION}/runc.amd64" \
-	"https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}.linux-amd64.tar.gz" \
-	"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kube-proxy" \
-	"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubelet" \
-	"https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/etcd.yaml" \
-	"https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/rbac.yaml" \
-	"https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/calico.yaml" \
-	"https://raw.githubusercontent.com/ansilh/kubernetes-the-hardway-virtualbox/master/config/coredns.yaml" \
-  "https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/worker-pki.sh"
+"https://pkg.cfssl.org/R1.2/cfssl_linux-amd64" \
+"https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64" \
+"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kube-apiserver" \
+"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kube-controller-manager" \
+"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kube-scheduler" \
+"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubectl" \
+"https://github.com/coreos/etcd/releases/download/v3.3.9/etcd-v3.3.9-linux-amd64.tar.gz" \
+"https://github.com/kubernetes-sigs/cri-tools/releases/download/${K8S_VERSION}/crictl-${K8S_VERSION}-linux-amd64.tar.gz" \
+"https://storage.googleapis.com/kubernetes-the-hard-way/runsc-50c283b9f56bb7200938d9e207355f05f79f0d17" \
+"https://github.com/opencontainers/runc/releases/download/${RUNC_VERSION}/runc.amd64" \
+"https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}.linux-amd64.tar.gz" \
+"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kube-proxy" \
+"https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubelet" \
+"https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/etcd.yaml" \
+"https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/rbac.yaml" \
+"https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/calico.yaml" \
+"https://raw.githubusercontent.com/ansilh/kubernetes-the-hardway-virtualbox/master/config/coredns.yaml" \
+"https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/worker-pki.sh"
   do
 		get_bins "${BIN_URL}"
 	done
