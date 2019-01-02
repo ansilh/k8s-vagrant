@@ -1,4 +1,4 @@
 *.log
 id_rsa*.*
-.vagrant
+.vagrant/
 .vagrant/*
