@@ -42,4 +42,4 @@ Password: nutanix
 
  [![Cluster deployment demo](https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/k8s-demo.png)](https://www.youtube.com/watch?v=5bSrwGvdWw0&hd=1 "Cluster deployment demo")
 
-Feel free comment to shoot me an email at ansilh@gmail.com
+If you have input , feel free to reach [me](https://www.linkedin.com/in/ansil-h-%E2%98%81-48b61415/)
