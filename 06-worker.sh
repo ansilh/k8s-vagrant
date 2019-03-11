@@ -117,7 +117,7 @@ sudo mkdir -p \
 
 #TODO# Add logic to retrieve versions from common place #
 
-wget https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/version.sh
+wget -q https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/version.sh
 source version.sh
 
 {
