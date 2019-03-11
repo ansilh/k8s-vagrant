@@ -117,8 +117,8 @@ sudo mkdir -p \
 
 #TODO# Add logic to retrieve versions from common place #
 
-K8S_VERSION="v1.13.0"
-CONTAINERD_VERSION="1.2.1"
+wget https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/version.sh
+source version.sh
 
 {
   sudo mv runsc-50c283b9f56bb7200938d9e207355f05f79f0d17 runsc
