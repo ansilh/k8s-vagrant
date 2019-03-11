@@ -7,8 +7,8 @@
 # Author: Ansil H (ansilh@gmail.com)
 # Date:   11/25/2018
 #----------------------------------------------------
-K8S_VERSION="v1.13.0"
-CONTAINERD_VERSION="1.2.1"
+K8S_VERSION="v1.13.4"
+CONTAINERD_VERSION="1.2.4"
 RUNC_VERSION="v1.0.0-rc6"
 CONTENT_LEN=0
 get_file_size(){
