@@ -12,7 +12,8 @@ CONTAINERD_VERSION="1.2.4"
 RUNC_VERSION="v1.0.0-rc6"
 CRI_TOOLS_VERSION="v1.13.0"
 CONTENT_LEN=0
-
+wget https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/version.sh
+source version.sh
 get_file_size(){
   # Get the size of the file by reading header
   URL=${1}
