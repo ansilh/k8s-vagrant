@@ -125,7 +125,7 @@ source version.sh
   sudo mv runc.amd64 runc
   chmod +x kube-proxy kubelet runc runsc
   sudo mv kube-proxy kubelet runc runsc /usr/local/bin/
-  sudo tar -xvf crictl-${K8S_VERSION}-linux-amd64.tar.gz -C /usr/local/bin/ >/dev/null
+  sudo tar -xvf crictl-${CRI_TOOLS_VERSION}-linux-amd64.tar.gz -C /usr/local/bin/ >/dev/null
   sudo tar -xvf containerd-${CONTAINERD_VERSION}.linux-amd64.tar.gz -C / >/dev/null
 }
 
