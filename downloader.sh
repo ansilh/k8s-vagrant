@@ -10,7 +10,9 @@
 K8S_VERSION="v1.13.4"
 CONTAINERD_VERSION="1.2.4"
 RUNC_VERSION="v1.0.0-rc6"
+CRI_TOOLS_VERSION="v1.13.0"
 CONTENT_LEN=0
+
 get_file_size(){
   # Get the size of the file by reading header
   URL=${1}
@@ -78,7 +80,7 @@ then
 "https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kube-scheduler" \
 "https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubectl" \
 "https://github.com/coreos/etcd/releases/download/v3.3.9/etcd-v3.3.9-linux-amd64.tar.gz" \
-"https://github.com/kubernetes-sigs/cri-tools/releases/download/${K8S_VERSION}/crictl-${K8S_VERSION}-linux-amd64.tar.gz" \
+"https://github.com/kubernetes-sigs/cri-tools/releases/download/${CRI_TOOLS_VERSION}/crictl-${CRI_TOOLS_VERSION}-linux-amd64.tar.gz" \
 "https://storage.googleapis.com/kubernetes-the-hard-way/runsc-50c283b9f56bb7200938d9e207355f05f79f0d17" \
 "https://github.com/opencontainers/runc/releases/download/${RUNC_VERSION}/runc.amd64" \
 "https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}.linux-amd64.tar.gz" \
@@ -94,7 +96,7 @@ then
 	done
 else
 	for BIN_URL in  \
-	"https://github.com/kubernetes-sigs/cri-tools/releases/download/${K8S_VERSION}/crictl-${K8S_VERSION}-linux-amd64.tar.gz" \
+	"https://github.com/kubernetes-sigs/cri-tools/releases/download/${CRI_TOOLS_VERSION}/crictl-${CRI_TOOLS_VERSION}-linux-amd64.tar.gz" \
 	"https://storage.googleapis.com/kubernetes-the-hard-way/runsc-50c283b9f56bb7200938d9e207355f05f79f0d17" \
 	"https://github.com/opencontainers/runc/releases/download/${RUNC_VERSION}/runc.amd64" \
 	"https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}.linux-amd64.tar.gz" \
