@@ -4,11 +4,11 @@ This project started for fun while preparing my CKA certification and there is n
 
 * Software Versions
   - Vagrant Box : ubuntu/xenial64 (20181217.0.0)
-  - k8s Version: v1.13.0
+  - K8S Version: v1.13.4
   - etcd Version: v3.3.9
-  - containerd Version: v1.2.1
+  - containerd Version: v1.2.4
+  - CRI tool Version: v1.13.0
   - runc Version: 1.0.0-rc6
-
 * AddOns included
   - MetalLB loadbalancer
   - DashBoard
@@ -42,4 +42,4 @@ Password: nutanix
 
  [![Cluster deployment demo](https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/k8s-demo.png)](https://www.youtube.com/watch?v=5bSrwGvdWw0&hd=1 "Cluster deployment demo")
 
-If you have input , feel free to reach [me](https://www.linkedin.com/in/ansil-h-%E2%98%81-48b61415/)
+If you have input , feel free to reachout [me](https://www.linkedin.com/in/ansil-h-%E2%98%81-48b61415/)
