@@ -4,11 +4,11 @@ This project started for fun while preparing my CKA certification and there is n
 
 * Software Versions
   - Vagrant Box : ubuntu/xenial64 (20181217.0.0)
-  - K8S Version: v1.13.4
+  - K8S Version: v1.14.0
   - etcd Version: v3.3.9
   - containerd Version: v1.2.4
-  - CRI tool Version: v1.13.0
-  - runc Version: 1.0.0-rc6
+  - CRI tool Version: v1.14.0
+  - runc Version: 1.0.0-rc7
 * AddOns included
   - MetalLB loadbalancer
   - DashBoard
