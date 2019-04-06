@@ -12,7 +12,7 @@
 kubectl apply -f https://raw.githubusercontent.com/containous/traefik/v1.7/examples/k8s/traefik-rbac.yaml
 
 # Download deployment yaml and change service IP type to LoadBalancer
-wget -q https://github.com/containous/traefik/blob/v1.7/examples/k8s/traefik-deployment.yaml
+wget -q https://raw.githubusercontent.com/containous/traefik/v1.7/examples/k8s/traefik-deployment.yaml
 sed -i 's/type: NodePort/type: LoadBalancer/' traefik-deployment.yaml
 kubectl apply -f traefik-deployment.yaml
 
