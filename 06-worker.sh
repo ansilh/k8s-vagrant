@@ -14,13 +14,18 @@ add_label_taint(){
   JQ_END=")"
 
   # Extract certificates from kubeconfig
-  cat /var/lib/kubelet/kubeconfig|awk '/certificate-authority-data:/{print $2}' |base64 -d >ca-curl.pem
-  cat /var/lib/kubelet/kubeconfig|awk '/client-certificate-data:/{print $2}' |base64 -d >cert-curl.pem
-  cat /var/lib/kubelet/kubeconfig|awk '/client-key-data:/{print $2}' |base64 -d >key-curl.pem
+  #cat /var/lib/kubelet/kubeconfig|awk '/certificate-authority-data:/{print $2}' |base64 -d >ca-curl.pem
+  #cat /var/lib/kubelet/kubeconfig|awk '/client-certificate-data:/{print $2}' |base64 -d >cert-curl.pem
+  #cat /var/lib/kubelet/kubeconfig|awk '/client-key-data:/{print $2}' |base64 -d >key-curl.pem
+  
+
 
   MASTER_NODE=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" '$1 ~ /ip/{print $2}'|head -1)
   NODE_NAME=$(hostname)
-
+  scp -oStrictHostKeyChecking=no ${MASTER_NODE}:~/PKI/ca.pem ca-curl.pem
+  scp -oStrictHostKeyChecking=no ${MASTER_NODE}:~/PKI/kubernetes-key.pem key-curl.pem
+  scp -oStrictHostKeyChecking=no ${MASTER_NODE}:~/PKI/kubernetes.pem cert-curl.pem
+  
   am_i_master(){
     echo "[SCRIPT][LABEL][INFO] Checking if node - $(hostname) - is marked as master"
     MY_ROLE=$(grep $(hostname) -A 2 ~/.k8sconfig |tail -1 |awk '{print $2}')
