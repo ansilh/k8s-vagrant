@@ -9,7 +9,7 @@
 #----------------------------------------------------
 
 CONTENT_LEN=0
-wget -q https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/version.sh
+wget -q https://raw.githubusercontent.com/ansilh/k8s-vagrant/development/version.sh
 source version.sh
 get_file_size(){
   # Get the size of the file by reading header
