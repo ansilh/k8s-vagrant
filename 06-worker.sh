@@ -121,8 +121,9 @@ sudo mkdir -p \
   /var/run/kubernetes
 
 #TODO# Add logic to retrieve versions from common place #
-
-wget -q https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/version.sh
+#TODO# Add logic to download version from GIT_BASE_URL of Vagrant file
+echo "GIT_BASE_URL - ${1}"
+wget -q ${1}/version.sh
 source version.sh
 
 {

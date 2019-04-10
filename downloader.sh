@@ -9,7 +9,7 @@
 #----------------------------------------------------
 
 CONTENT_LEN=0
-wget -q https://raw.githubusercontent.com/ansilh/k8s-vagrant/development/version.sh
+wget -q ${2}/version.sh
 source version.sh
 get_file_size(){
   # Get the size of the file by reading header
@@ -66,7 +66,7 @@ get_bins(){
 }
 
 # Master node will also act as worker node , thus more bins for master node
-# TODO: Imrpove download list using inout YAML file
+# TODO: Imrpove download list using input YAML file
 
 if [ ${1} == "Master" ]
 then
