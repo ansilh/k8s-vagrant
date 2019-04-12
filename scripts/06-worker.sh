@@ -123,8 +123,8 @@ sudo mkdir -p \
 #TODO# Add logic to retrieve versions from common place #
 #TODO# Add logic to download version from GIT_BASE_URL of Vagrant file
 echo "GIT_BASE_URL - ${1}"
-wget -q ${1}/version.sh
-source version.sh
+wget -q ${1}/VERSIONS
+source VERSIONS
 
 {
   sudo mv runsc-50c283b9f56bb7200938d9e207355f05f79f0d17 runsc
