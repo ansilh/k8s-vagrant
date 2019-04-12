@@ -76,6 +76,7 @@ get_bins(){
 }
 
 # Download version file 
+echo "Downloading ${BRANCH}/VERSIONS"
 get_bins ${BRANCH}/VERSIONS
 source VERSIONS
 
@@ -83,7 +84,7 @@ source VERSIONS
 echo 
 echo "**** Component Versions ****"
 echo 
-cat ${BRANCH}/VERSIONS
+cat VERSIONS
 echo 
 echo "**** ------------------ ****"
 echo 
