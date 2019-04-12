@@ -10,11 +10,11 @@
 #  04/13/2019 : Flexible & de-duped download URLs
 #---------------------------------------------------------------------------------------------------
 
+# To control git url path based on branch
 BRANCH=${2}
-CONTENT_LEN=0
 
-#wget -q ${BRANCH}/VERSIONS
-#source VERSIONS
+# To store remote file size
+CONTENT_LEN=0
 
 # Get the size of the file by reading header
 get_file_size(){
