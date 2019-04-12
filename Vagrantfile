@@ -47,6 +47,7 @@ SCRIPT
 # Download all scripts from Github repo
 # TODO : Move scripts to a different directory
 GIT_BASE_URL = 'https://raw.githubusercontent.com/ansilh/k8s-vagrant/development/'
+SCRIPTS_PATH = GIT_BASE_URL + "scripts"
 
 $keygen = <<-KEYGEN
 echo "[SCRIPT][INFO] Changing password of user 'ubuntu'"
@@ -84,22 +85,22 @@ Vagrant.configure("2") do |config|
 			node.vm.provision "file", source: "id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
 			node.vm.provision 'shell', inline: "chmod 600 /home/vagrant/.ssh/id_rsa"
 			node.vm.provision 'shell', inline: "echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys", privileged: false
-			node.vm.provision 'shell', path: GIT_BASE_URL + "downloader.sh", args:[host['type'], GIT_BASE_URL ], privileged: false
+			node.vm.provision 'shell', path: SCRIPTS_PATH + "downloader.sh", args:[host['type'], SCRIPTS_PATH ], privileged: false
 			if host['type'] == 'Master'
-				node.vm.provision 'shell', path: GIT_BASE_URL + "01-master-pki.sh", privileged: false
-				node.vm.provision 'shell', path: GIT_BASE_URL + "02-master-etcd.sh", privileged: false
-				node.vm.provision 'shell', path: GIT_BASE_URL + "03-master-controller.sh", privileged: false
-				node.vm.provision 'shell', path: GIT_BASE_URL + "04-master-rbac.sh", privileged: false
-				node.vm.provision 'shell', path: GIT_BASE_URL + "05-master-kubectl-conf.sh", privileged: false
-				node.vm.provision 'shell', path: GIT_BASE_URL + "06-worker.sh",args:[GIT_BASE_URL], privileged: false
-				node.vm.provision 'shell', path: GIT_BASE_URL + "07-master-calico.sh", privileged: false
-				node.vm.provision 'shell', path: GIT_BASE_URL + "08-coredns-addon.sh", privileged: false
-				node.vm.provision 'shell', path: GIT_BASE_URL + "09-loadbalancer-addon.sh", privileged: false
-				node.vm.provision 'shell', path: GIT_BASE_URL + "10-metric-server-addon.sh", privileged: false
-				node.vm.provision 'shell', path: GIT_BASE_URL + "11-dash-board-addon.sh", privileged: false
-				node.vm.provision 'shell', path: GIT_BASE_URL + "12-ingress-controller.sh", privileged: false
+				node.vm.provision 'shell', path: SCRIPTS_PATH + "01-master-pki.sh", privileged: false
+				node.vm.provision 'shell', path: SCRIPTS_PATH + "02-master-etcd.sh", privileged: false
+				node.vm.provision 'shell', path: SCRIPTS_PATH + "03-master-controller.sh", privileged: false
+				node.vm.provision 'shell', path: SCRIPTS_PATH + "04-master-rbac.sh", privileged: false
+				node.vm.provision 'shell', path: SCRIPTS_PATH + "05-master-kubectl-conf.sh", privileged: false
+				node.vm.provision 'shell', path: SCRIPTS_PATH + "06-worker.sh",args:[SCRIPTS_PATH], privileged: false
+				node.vm.provision 'shell', path: SCRIPTS_PATH + "07-master-calico.sh", privileged: false
+				node.vm.provision 'shell', path: SCRIPTS_PATH + "08-coredns-addon.sh", privileged: false
+				node.vm.provision 'shell', path: SCRIPTS_PATH + "09-loadbalancer-addon.sh", privileged: false
+				node.vm.provision 'shell', path: SCRIPTS_PATH + "10-metric-server-addon.sh", privileged: false
+				node.vm.provision 'shell', path: SCRIPTS_PATH + "11-dash-board-addon.sh", privileged: false
+				node.vm.provision 'shell', path: SCRIPTS_PATH + "12-ingress-controller.sh", privileged: false
 			else
-				node.vm.provision 'shell', path: GIT_BASE_URL + "06-worker.sh",args:[GIT_BASE_URL], privileged: false
+				node.vm.provision 'shell', path: SCRIPTS_PATH + "06-worker.sh",args:[GIT_BASE_URL], privileged: false
 			end
 
 		end
