@@ -83,7 +83,7 @@ source VERSIONS
 echo 
 echo "**** Component Versions ****"
 echo 
-cat ${2}/VERSIONS
+cat ${BRANCH}/VERSIONS
 echo 
 echo "**** ------------------ ****"
 echo 
@@ -113,7 +113,7 @@ RUNSC_URL="https://storage.googleapis.com/kubernetes-the-hard-way/runsc-50c283b9
 RUNC_URL="https://github.com/opencontainers/runc/releases/download/${RUNC_VERSION}/runc.${BIN_FORMAT}"
 CONTAINERD_URL="https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}.linux-${BIN_FORMAT}.tar.gz"
 CALICO_BASE="https://docs.projectcalico.org/${CALICO_VERSION}/getting-started/kubernetes/installation"
-WORKER_PKI_URL="${2}/scipts/worker-pki.sh"
+WORKER_PKI_URL="${BRANCH}/worker-pki.sh"
 
 # Download binaries based on the node role
 # Master node will also act as worker node , thus more bins for master node
