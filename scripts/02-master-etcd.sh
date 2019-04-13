@@ -9,9 +9,10 @@
 # Date:   11/25/2018
 #----------------------------------------------------
 
+source VERSIONS
 {
-  tar -xvf etcd-v3.3.9-linux-amd64.tar.gz >/dev/null
-  sudo mv etcd-v3.3.9-linux-amd64/etcd* /usr/local/bin/
+  tar -xvf etcd-${ETCD_VERSION}-linux-amd64.tar.gz >/dev/null
+  sudo mv etcd-${ETCD_VERSION}-linux-amd64/etcd* /usr/local/bin/
 }
 {
   MASTER=$(grep -w Master -B 2  ~/.k8sconfig |sed 's/ //g'|awk -F ":" '$1 ~ /name/{print $2}'|head -1)

@@ -5,6 +5,9 @@
 #----------------------------------------------------
 # Author: Ansil H (ansilh@gmail.com)
 # Date:   11/25/2018
+# Change Log:
+# 	04/13/2019: Moved scripts to a common directory
+#               Added logic to read software versions from one place
 #----------------------------------------------------
 require 'yaml'
 require 'net/ssh'
@@ -45,11 +48,9 @@ echo "Dummy scriipt hook for future use"
 SCRIPT
 
 # Download all scripts from Github repo
-# TODO : Move scripts to a different directory
+
 GIT_BASE_URL = 'https://raw.githubusercontent.com/ansilh/k8s-vagrant/development'
 SCRIPTS_PATH = "#{GIT_BASE_URL}" + "/scripts"
-
-puts "Script path is #{SCRIPTS_PATH}"
 
 $keygen = <<-KEYGEN
 echo "[SCRIPT][INFO] Changing password of user 'ubuntu'"
