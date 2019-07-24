@@ -8,6 +8,7 @@
 # Change Log:
 # 	04/13/2019: Moved scripts to a common directory
 #               Added logic to read software versions from one place
+#   24/07/2019: Added git branching with BRANCH
 #----------------------------------------------------
 require 'yaml'
 require 'net/ssh'
@@ -48,8 +49,8 @@ echo "Dummy scriipt hook for future use"
 SCRIPT
 
 # Download all scripts from Github repo
-
-GIT_BASE_URL = 'https://raw.githubusercontent.com/ansilh/k8s-vagrant/development'
+BRANCH='/development'
+GIT_BASE_URL = "https://raw.githubusercontent.com/ansilh/k8s-vagrant" + "#{BRANCH}" 
 SCRIPTS_PATH = "#{GIT_BASE_URL}" + "/scripts"
 
 $keygen = <<-KEYGEN
