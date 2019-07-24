@@ -40,7 +40,7 @@ sed -i 's@--source=kubernetes:https://kubernetes\.default@--source=kubernetes.su
 kubectl create -f dash-board
 kubectl create -f heapster-rbac.yaml
 sleep 10
-kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
+kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
 kubectl create serviceaccount cluster-admin-dashboard-sa
 kubectl create clusterrolebinding cluster-admin-dashboard-sa \
   --clusterrole=cluster-admin \
