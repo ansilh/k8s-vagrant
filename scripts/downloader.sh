@@ -19,7 +19,7 @@ CONTENT_LEN=0
 # Get the size of the file by reading header
 get_file_size(){
   URL=${1}
-  echo "Trying to download ${1}"
+  echo -e "Trying to download \n ${1} \n"
   CONTENT_LEN=$(curl -sLIXGET $URL | awk '/^Content-Length:/{print $2}'| tr -d '\r')
 }
 
