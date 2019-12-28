@@ -32,4 +32,4 @@ sed -i "/volumeMounts:/a ${VOLUME_MOUNTS}" metrics-server-deployment.yaml
 cd ..
 kubectl create -f metric-server/
 
-kubectl describe apiservices v1beta1.metrics.k8s.io
+# kubectl describe apiservices v1beta1.metrics.k8s.io

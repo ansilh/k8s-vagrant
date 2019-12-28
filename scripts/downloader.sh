@@ -8,6 +8,7 @@
 # Date:   11/25/2018
 # Change Log: 
 #  04/13/2019 : Flexible & de-duped download URLs
+#  12/29/2019 : Removed calico rbac yaml as its bundled in main yaml in v3.8
 #---------------------------------------------------------------------------------------------------
 
 # To control git url path based on branch
@@ -90,9 +91,6 @@ echo
 echo "**** ------------------ ****"
 echo 
 
-# This will help incase if we plan for other architectures
-BIN_FORMAT="amd64"
-
 # CFSSL URLs 
 CFSSL_BIN_BASE="https://pkg.cfssl.org"
 CFSSL_LINUX_URL=${CFSSL_BIN_BASE}"/R1.2/cfssl_linux-${BIN_FORMAT}"
@@ -106,8 +104,6 @@ K8S_SCHED_URL="${K8S_BIN_BASE}/bin/linux/${BIN_FORMAT}/kube-scheduler"
 K8S_CTL_URL="${K8S_BIN_BASE}/bin/linux/${BIN_FORMAT}/kubectl"
 K8S_PROXY_URL="${K8S_BIN_BASE}/bin/linux/${BIN_FORMAT}/kube-proxy"
 K8S_KUBELET_URL="${K8S_BIN_BASE}/bin/linux/${BIN_FORMAT}/kubelet"
-
-echo "${K8S_API_URL}"
 
 # Misc URLs 
 COREDNS_YAML="https://raw.githubusercontent.com/ansilh/kubernetes-the-hardway-virtualbox/master/config/coredns.yaml"
