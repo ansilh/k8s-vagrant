@@ -19,6 +19,7 @@ CONTENT_LEN=0
 # Get the size of the file by reading header
 get_file_size(){
   URL=${1}
+  echo "Trying to download ${1}"
   CONTENT_LEN=$(curl -sLIXGET $URL | awk '/^Content-Length:/{print $2}'| tr -d '\r')
 }
 
@@ -114,7 +115,6 @@ RUNSC_URL="https://storage.googleapis.com/kubernetes-the-hard-way/runsc-50c283b9
 RUNC_URL="https://github.com/opencontainers/runc/releases/download/${RUNC_VERSION}/runc.${BIN_FORMAT}"
 CONTAINERD_URL="https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}.linux-${BIN_FORMAT}.tar.gz"
 CALICO_BASE="https://docs.projectcalico.org/${CALICO_VERSION}/getting-started/kubernetes/installation"
-#CALICO_BASE="https://docs.projectcalico.org/${CALICO_VERSION}/manifests/
 WORKER_PKI_URL="${BRANCH}/worker-pki.sh"
 
 # Download binaries based on the node role
