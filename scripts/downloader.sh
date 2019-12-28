@@ -136,7 +136,6 @@ then
 "${K8S_PROXY_URL}" \
 "${K8S_KUBELET_URL}" \
 "${CALICO_BASE}/hosted/etcd.yaml" \
-#"${CALICO_BASE}/rbac.yaml" \
 "${CALICO_BASE}/hosted/calico.yaml" \
 "${COREDNS_YAML}" \
 "${WORKER_PKI_URL}"
