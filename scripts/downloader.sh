@@ -114,6 +114,7 @@ RUNSC_URL="https://storage.googleapis.com/kubernetes-the-hard-way/runsc-50c283b9
 RUNC_URL="https://github.com/opencontainers/runc/releases/download/${RUNC_VERSION}/runc.${BIN_FORMAT}"
 CONTAINERD_URL="https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}.linux-${BIN_FORMAT}.tar.gz"
 CALICO_BASE="https://docs.projectcalico.org/${CALICO_VERSION}/getting-started/kubernetes/installation"
+#CALICO_BASE="https://docs.projectcalico.org/${CALICO_VERSION}/manifests/
 WORKER_PKI_URL="${BRANCH}/worker-pki.sh"
 
 # Download binaries based on the node role
@@ -135,7 +136,7 @@ then
 "${K8S_PROXY_URL}" \
 "${K8S_KUBELET_URL}" \
 "${CALICO_BASE}/hosted/etcd.yaml" \
-"${CALICO_BASE}/rbac.yaml" \
+#"${CALICO_BASE}/rbac.yaml" \
 "${CALICO_BASE}/hosted/calico.yaml" \
 "${COREDNS_YAML}" \
 "${WORKER_PKI_URL}"
