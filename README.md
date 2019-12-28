@@ -1,4 +1,4 @@
-:white_check_mark: Production branch :white_check_mark:
+:white_check_mark: v1.15.0 branch :white_check_mark:
 
 # Carry a kubernetes cluster in your laptop
 
@@ -26,11 +26,11 @@ This project started for fun while preparing my CKA certification and there is n
   - [Install Vagrant](https://www.vagrantup.com/)
   - Download Vagrant file
 ```
-$ wget https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/Vagrantfile
+$ wget https://raw.githubusercontent.com/ansilh/k8s-vagrant/v1.15.0/Vagrantfile
 ```
  * Download config.yaml file (Modify if needed)
 ```
-$ wget https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/config.yaml
+$ wget https://raw.githubusercontent.com/ansilh/k8s-vagrant/v1.15.0/config.yaml
 ```
  * Execute vagrant up
 ```

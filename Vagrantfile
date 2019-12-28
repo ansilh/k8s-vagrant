@@ -49,7 +49,7 @@ echo "Dummy scriipt hook for future use"
 SCRIPT
 
 # Download all scripts from Github repo
-BRANCH='/master'
+BRANCH='/v1.15.0'
 GIT_BASE_URL = "https://raw.githubusercontent.com/ansilh/k8s-vagrant" + "#{BRANCH}" 
 SCRIPTS_PATH = "#{GIT_BASE_URL}" + "/scripts"
 
