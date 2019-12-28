@@ -107,6 +107,8 @@ K8S_CTL_URL="${K8S_BIN_BASE}/bin/linux/${BIN_FORMAT}/kubectl"
 K8S_PROXY_URL="${K8S_BIN_BASE}/bin/linux/${BIN_FORMAT}/kube-proxy"
 K8S_KUBELET_URL="${K8S_BIN_BASE}/bin/linux/${BIN_FORMAT}/kubelet"
 
+echo "${K8S_API_URL}"
+
 # Misc URLs 
 COREDNS_YAML="https://raw.githubusercontent.com/ansilh/kubernetes-the-hardway-virtualbox/master/config/coredns.yaml"
 ETCD_URL="https://github.com/coreos/etcd/releases/download/${ETCD_VERSION}/etcd-${ETCD_VERSION}-linux-${BIN_FORMAT}.tar.gz"
