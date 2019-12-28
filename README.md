@@ -6,11 +6,12 @@ This project started for fun while preparing my CKA certification and there is n
 
 * Software Versions
   - Vagrant Box : ubuntu/xenial64 (20181217.0.0)
-  - K8S Version: v1.14.0
+  - K8S Version: v1.15.0
   - etcd Version: v3.3.9
-  - containerd Version: v1.2.4
-  - CRI tool Version: v1.14.0
+  - containerd Version: v1.3.2
+  - CRI tool Version: v1.15.0
   - runc Version: 1.0.0-rc6
+  - Calico: v3.8
 * AddOns included
   - MetalLB loadbalancer
   - DashBoard
