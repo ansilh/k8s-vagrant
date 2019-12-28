@@ -8,6 +8,7 @@
 # Date:   11/25/2018
 # Change Log: 
 #  04/13/2019 : Flexible & de-duped download URLs
+#  12/29/2019 : Removed calico rbac yaml as its bundled in main yaml in v3.8
 #---------------------------------------------------------------------------------------------------
 
 # To control git url path based on branch
@@ -19,6 +20,7 @@ CONTENT_LEN=0
 # Get the size of the file by reading header
 get_file_size(){
   URL=${1}
+  echo -e "Trying to download \n ${1} \n"
   CONTENT_LEN=$(curl -sLIXGET $URL | awk '/^Content-Length:/{print $2}'| tr -d '\r')
 }
 
@@ -89,9 +91,6 @@ echo
 echo "**** ------------------ ****"
 echo 
 
-# This will help incase if we plan for other architectures
-BIN_FORMAT="amd64"
-
 # CFSSL URLs 
 CFSSL_BIN_BASE="https://pkg.cfssl.org"
 CFSSL_LINUX_URL=${CFSSL_BIN_BASE}"/R1.2/cfssl_linux-${BIN_FORMAT}"
@@ -135,7 +134,6 @@ then
 "${K8S_PROXY_URL}" \
 "${K8S_KUBELET_URL}" \
 "${CALICO_BASE}/hosted/etcd.yaml" \
-"${CALICO_BASE}/rbac.yaml" \
 "${CALICO_BASE}/hosted/calico.yaml" \
 "${COREDNS_YAML}" \
 "${WORKER_PKI_URL}"
