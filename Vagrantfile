@@ -46,7 +46,7 @@ SCRIPT
 
 # Download all scripts from Github repo
 # TODO : Move scripts to a different derectory
-GIT_BASE_URL = 'https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/'
+GIT_BASE_URL = 'https://raw.githubusercontent.com/ansilh/k8s-vagrant/v1.14.0/'
 
 $keygen = <<-KEYGEN
 echo "[SCRIPT][INFO] Changing password of user 'ubuntu'"

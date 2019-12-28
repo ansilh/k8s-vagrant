@@ -9,7 +9,7 @@
 #----------------------------------------------------
 
 CONTENT_LEN=0
-wget -q https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/version.sh
+wget -q https://raw.githubusercontent.com/ansilh/k8s-vagrant/v1.14.0/version.sh
 source version.sh
 get_file_size(){
   # Get the size of the file by reading header
@@ -88,7 +88,7 @@ then
 "https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/rbac.yaml" \
 "https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/calico.yaml" \
 "https://raw.githubusercontent.com/ansilh/kubernetes-the-hardway-virtualbox/master/config/coredns.yaml" \
-"https://raw.githubusercontent.com/ansilh/k8s-vagrant/master/worker-pki.sh"
+"https://raw.githubusercontent.com/ansilh/k8s-vagrant/v1.14.0/worker-pki.sh"
   do
 		get_bins "${BIN_URL}"
 	done
