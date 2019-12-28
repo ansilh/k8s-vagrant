@@ -1,13 +1,8 @@
-0000000   K   8   S   _   V   E   R   S   I   O   N   =   "   v   1   .
-0000020   1   5   .   0   "  \n   C   O   N   T   A   I   N   E   R   D
-0000040   _   V   E   R   S   I   O   N   =   "   1   .   3   .   2   "
-0000060  \n   R   U   N   C   _   V   E   R   S   I   O   N   =   "   v
-0000100   1   .   0   .   0   -   r   c   6   "  \n   C   R   I   _   T
-0000120   O   O   L   S   _   V   E   R   S   I   O   N   =   "   v   1
-0000140   .   1   5   .   0   "  \n   E   T   C   D   _   V   E   R   S
-0000160   I   O   N   =   "   v   3   .   3   .   9   "  \n   C   A   L
-0000200   I   C   O   _   V   E   R   S   I   O   N   =   "   v   3   .
-0000220   8   "  \n   B   I   N   _   T   Y   P   E   =   "   a   m   d
-0000240   6   4   "  \n   D   I   S   T   R   O   =   "   l   i   n   u
-0000260   x   "  \n
-0000263
+K8S_VERSION="v1.15.0"
+CONTAINERD_VERSION="1.3.2"
+RUNC_VERSION="v1.0.0-rc6"
+CRI_TOOLS_VERSION="v1.15.0"
+ETCD_VERSION="v3.3.9"
+CALICO_VERSION="v3.8"
+BIN_TYPE="amd64"
+DISTRO="linux"
