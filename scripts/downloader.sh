@@ -93,25 +93,25 @@ echo
 
 # CFSSL URLs 
 CFSSL_BIN_BASE="https://pkg.cfssl.org"
-CFSSL_LINUX_URL=${CFSSL_BIN_BASE}"/R1.2/cfssl_linux-${BIN_FORMAT}"
-CFSSL_LINUX_JSON_URL=${CFSSL_BIN_BASE}"/R1.2/cfssljson_linux-${BIN_FORMAT}"
+CFSSL_LINUX_URL=${CFSSL_BIN_BASE}"/R1.2/cfssl_linux-${BIN_TYPE}"
+CFSSL_LINUX_JSON_URL=${CFSSL_BIN_BASE}"/R1.2/cfssljson_linux-${BIN_TYPE}"
 
 # Kubernetes binary URLs 
 K8S_BIN_BASE="https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}"
-K8S_API_URL="${K8S_BIN_BASE}/bin/linux/${BIN_FORMAT}/kube-apiserver"
-K8S_CTR_URL="${K8S_BIN_BASE}/bin/linux/${BIN_FORMAT}/kube-controller-manager"
-K8S_SCHED_URL="${K8S_BIN_BASE}/bin/linux/${BIN_FORMAT}/kube-scheduler"
-K8S_CTL_URL="${K8S_BIN_BASE}/bin/linux/${BIN_FORMAT}/kubectl"
-K8S_PROXY_URL="${K8S_BIN_BASE}/bin/linux/${BIN_FORMAT}/kube-proxy"
-K8S_KUBELET_URL="${K8S_BIN_BASE}/bin/linux/${BIN_FORMAT}/kubelet"
+K8S_API_URL="${K8S_BIN_BASE}/bin/linux/${BIN_TYPE}/kube-apiserver"
+K8S_CTR_URL="${K8S_BIN_BASE}/bin/linux/${BIN_TYPE}/kube-controller-manager"
+K8S_SCHED_URL="${K8S_BIN_BASE}/bin/linux/${BIN_TYPE}/kube-scheduler"
+K8S_CTL_URL="${K8S_BIN_BASE}/bin/linux/${BIN_TYPE}/kubectl"
+K8S_PROXY_URL="${K8S_BIN_BASE}/bin/linux/${BIN_TYPE}/kube-proxy"
+K8S_KUBELET_URL="${K8S_BIN_BASE}/bin/linux/${BIN_TYPE}/kubelet"
 
 # Misc URLs 
 COREDNS_YAML="https://raw.githubusercontent.com/ansilh/kubernetes-the-hardway-virtualbox/master/config/coredns.yaml"
-ETCD_URL="https://github.com/coreos/etcd/releases/download/${ETCD_VERSION}/etcd-${ETCD_VERSION}-linux-${BIN_FORMAT}.tar.gz"
-CRI_URL="https://github.com/kubernetes-sigs/cri-tools/releases/download/${CRI_TOOLS_VERSION}/crictl-${CRI_TOOLS_VERSION}-linux-${BIN_FORMAT}.tar.gz"
+ETCD_URL="https://github.com/coreos/etcd/releases/download/${ETCD_VERSION}/etcd-${ETCD_VERSION}-linux-${BIN_TYPE}.tar.gz"
+CRI_URL="https://github.com/kubernetes-sigs/cri-tools/releases/download/${CRI_TOOLS_VERSION}/crictl-${CRI_TOOLS_VERSION}-linux-${BIN_TYPE}.tar.gz"
 RUNSC_URL="https://storage.googleapis.com/kubernetes-the-hard-way/runsc-50c283b9f56bb7200938d9e207355f05f79f0d17"
-RUNC_URL="https://github.com/opencontainers/runc/releases/download/${RUNC_VERSION}/runc.${BIN_FORMAT}"
-CONTAINERD_URL="https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}.linux-${BIN_FORMAT}.tar.gz"
+RUNC_URL="https://github.com/opencontainers/runc/releases/download/${RUNC_VERSION}/runc.${BIN_TYPE}"
+CONTAINERD_URL="https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}.linux-${BIN_TYPE}.tar.gz"
 CALICO_BASE="https://docs.projectcalico.org/${CALICO_VERSION}/getting-started/kubernetes/installation"
 WORKER_PKI_URL="${BRANCH}/worker-pki.sh"
 
