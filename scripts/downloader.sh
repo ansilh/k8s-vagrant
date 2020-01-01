@@ -12,7 +12,7 @@
 #---------------------------------------------------------------------------------------------------
 
 # To control git url path based on branch
-BRANCH=${2}
+GIT_BASE_URL=${2}
 
 # To store remote file size
 CONTENT_LEN=0
@@ -78,8 +78,8 @@ get_bins(){
 }
 
 # Download version file 
-echo "Downloading ${BRANCH}/VERSIONS"
-get_bins ${BRANCH}/VERSIONS
+echo "Downloading ${GIT_BASE_URL}/VERSIONS"
+get_bins ${GIT_BASE_URL}/VERSIONS
 source VERSIONS
 
 # Display downloaded version file on screen - debugging purpose
@@ -113,7 +113,7 @@ RUNSC_URL="https://storage.googleapis.com/kubernetes-the-hard-way/runsc-50c283b9
 RUNC_URL="https://github.com/opencontainers/runc/releases/download/${RUNC_VERSION}/runc.${BIN_TYPE}"
 CONTAINERD_URL="https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}.linux-${BIN_TYPE}.tar.gz"
 CALICO_BASE="https://docs.projectcalico.org/${CALICO_VERSION}/getting-started/kubernetes/installation"
-WORKER_PKI_URL="${BRANCH}/worker-pki.sh"
+WORKER_PKI_URL="${GIT_BASE_URL}/worker-pki.sh"
 
 # Download binaries based on the node role
 # Master node will also act as worker node , thus more bins for master node
