@@ -106,7 +106,7 @@ K8S_PROXY_URL="${K8S_BIN_BASE}/bin/linux/${BIN_TYPE}/kube-proxy"
 K8S_KUBELET_URL="${K8S_BIN_BASE}/bin/linux/${BIN_TYPE}/kubelet"
 
 # Misc URLs 
-COREDNS_YAML="https://raw.githubusercontent.com/ansilh/kubernetes-the-hardway-virtualbox/master/config/coredns.yaml"
+COREDNS_YAML="https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/coredns.yaml.sed"
 ETCD_URL="https://github.com/coreos/etcd/releases/download/${ETCD_VERSION}/etcd-${ETCD_VERSION}-linux-${BIN_TYPE}.tar.gz"
 CRI_URL="https://github.com/kubernetes-sigs/cri-tools/releases/download/${CRI_TOOLS_VERSION}/crictl-${CRI_TOOLS_VERSION}-linux-${BIN_TYPE}.tar.gz"
 RUNSC_URL="https://storage.googleapis.com/kubernetes-the-hard-way/runsc-50c283b9f56bb7200938d9e207355f05f79f0d17"
