@@ -5,10 +5,10 @@ This project started for fun while preparing my CKA certification and there is n
 
 * Software Versions
   - Vagrant Box : ubuntu/xenial64 (20181217.0.0)
-  - K8S Version: v1.15.0
+  - K8S Version: v1.16.0
   - etcd Version: v3.3.9
   - containerd Version: 1.3.2
-  - CRI tool Version: v1.15.0
+  - CRI tool Version: v1.16.0
   - runc Version: v1.0.0-rc6
   - Calico: v3.8
 * AddOns included
