@@ -14,11 +14,11 @@
 adjust_spec_version(){
         INPUT_ORIGINAL=${1}
         # Check whether yq_linux_amd64 exists or not
-        if [ ! -e yq_linux_amd64 ]
-        then
-                echo "ERROR: yq_linux_amd64 is not present"
-                return 253
-        fi
+        # if [ ! -e yq_linux_amd64 ]
+        # then
+        #         echo "ERROR: yq_linux_amd64 is not present"
+        #         return 253
+        # fi
 
         # If file is already processed , then exit without touching back-up file
         if [ ! -f ${INPUT_ORIGINAL}_bkp ]
@@ -36,7 +36,7 @@ adjust_spec_version(){
 
         # Loop through the input file and extract each YAML document and adjust API version \
         #  according to the deployed k8s version
-        until ! (yq_linux_amd64 read -d${i} ${INPUT_ORIGINAL} apiVersion 1>/dev/null 2>&1);
+        until ! $(yq_linux_amd64 read -d${i} ${INPUT_ORIGINAL} apiVersion 1>/dev/null 2>&1);
         do
 
                 # Skip empty YAML documents to avoid nulls in final file
