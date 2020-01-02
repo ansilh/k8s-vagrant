@@ -8,8 +8,10 @@
 # Date:   11/25/2018
 #----------------------------------------------------
 
+source libs.sh
+
 echo "[SCRIPT][RBAC] Creating RBAC for kube-apiserver-to-kubelet"
-cat <<EOF | kubectl apply --kubeconfig admin.kubeconfig -f -
+cat <<EOF >kube-apiserver-to-kubelet-cr.yaml
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
@@ -30,7 +32,10 @@ rules:
     verbs:
       - "*"
 EOF
-cat <<EOF | kubectl apply --kubeconfig admin.kubeconfig -f -
+adjust_spec_version kube-apiserver-to-kubelet.yaml
+kubectl apply --kubeconfig admin.kubeconfig -f kube-apiserver-to-kubelet.yaml
+
+cat <<EOF >kube-apiserver-to-kubelet-crb.yaml
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
@@ -45,3 +50,5 @@ subjects:
     kind: User
     name: kubernetes
 EOF
+adjust_spec_version kube-apiserver-to-kubelet-crb.yaml
+kubectl apply --kubeconfig admin.kubeconfig -f kube-apiserver-to-kubelet-crb.yaml

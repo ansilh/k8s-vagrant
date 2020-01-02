@@ -10,6 +10,8 @@
 # Date:   12/21/2018
 #----------------------------------------------------
 
+source libs.sh
+
 X="- apiGroups:
   - \"\"
   resources:
@@ -31,16 +33,19 @@ influxdb.yaml"
 for FILE in ${YAML_FILES}
 do
  wget -q https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/${FILE}
+ adjust_spec_version ${FILE}
 done
 cd ..
 wget -q https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/rbac/heapster-rbac.yaml
-
+adjust_spec_version heapster-rbac.yaml
 sed -i 's@--source=kubernetes:https://kubernetes\.default@--source=kubernetes.summary_api:https://kubernetes.default?kubeletHttps=true\&kubeletPort=10250\&insecure=true@' dash-board/heapster.yaml
 
 kubectl create -f dash-board
 kubectl create -f heapster-rbac.yaml
 sleep 10
-kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+wget -q https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+adjust_spec_version kubernetes-dashboard.yaml
+kubectl create -f kubernetes-dashboard.yaml
 kubectl create serviceaccount cluster-admin-dashboard-sa
 kubectl create clusterrolebinding cluster-admin-dashboard-sa \
   --clusterrole=cluster-admin \

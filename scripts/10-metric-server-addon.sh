@@ -9,6 +9,8 @@
 # Date:   12/04/2018
 #----------------------------------------------------
 
+source libs.sh
+
 YAMLS="auth-delegator.yaml
 auth-reader.yaml
 metrics-apiservice.yaml
@@ -22,6 +24,7 @@ cd metric-server
 for FILE in ${YAMLS}
 do
   wget -q https://raw.githubusercontent.com/kubernetes-incubator/metrics-server/master/deploy/1.8%2B/${FILE}
+  adjust_spec_version ${FILE}
 done
 
 VOLUME="\      - name: hosts\n\        hostPath:\n\         path: /etc/hosts"
