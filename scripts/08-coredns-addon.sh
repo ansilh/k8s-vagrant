@@ -10,7 +10,8 @@
 # 01/01/2020: Modified to adapt proper API versions
 #----------------------------------------------------
 source libs.sh
-adjust_spec_version coredns.yaml
+mv coredns.yaml.sed coredns.yaml
+
 # for i in $(egrep --no-group-separator "apiVersion" -A 1 coredns.yaml.sed  |sed -e 'N;s/\n/|/g' -e 's/ //g')
 # do
 #         API_VERSION=$(echo $i|awk -F "|" '{print $1}'|awk -F ":" '{print $2}')
@@ -29,6 +30,6 @@ sed -i "s@REVERSE_CIDRS@${REVERSE_CIDRS}@" coredns.yaml
 sed -i "s@FEDERATIONS@@" coredns.yaml
 sed -i "s@STUBDOMAINS@@" coredns.yaml
 sed -i "s@CLUSTER_DNS_IP@${CLUSTER_DNS_IP}@" coredns.yaml
-
+adjust_spec_version coredns.yaml
 kubectl apply -f coredns.yaml
 # TODO: Write function to check calico readiness

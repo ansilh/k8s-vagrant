@@ -32,8 +32,8 @@ rules:
     verbs:
       - "*"
 EOF
-adjust_spec_version kube-apiserver-to-kubelet.yaml
-kubectl apply --kubeconfig admin.kubeconfig -f kube-apiserver-to-kubelet.yaml
+adjust_spec_version kube-apiserver-to-kubelet-cr.yaml
+kubectl apply --kubeconfig admin.kubeconfig -f kube-apiserver-to-kubelet-cr.yaml
 
 cat <<EOF >kube-apiserver-to-kubelet-crb.yaml
 apiVersion: rbac.authorization.k8s.io/v1beta1
