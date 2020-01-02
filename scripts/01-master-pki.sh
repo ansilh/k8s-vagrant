@@ -16,6 +16,7 @@ echo "[SCRIPT][PKI][INFO] Bin setup."
   sudo  mv cfssl_linux-amd64 /usr/local/bin/cfssl
   sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssljson
   chmod +x worker-pki.sh
+  chmod +x yq_linux_amd64
 }
 echo "[SCRIPT][PKI][INFO] Creating PKI Infrastructure"
 mkdir PKI
