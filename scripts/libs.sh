@@ -14,7 +14,7 @@
 adjust_spec_version(){
         INPUT_ORIGINAL=${1}
         # Check whether yq_linux_amd64 exists or not
-        if [ ! -e ./yq_linux_amd64 ]
+        if [ ! -e yq_linux_amd64 ]
         then
                 echo "ERROR: yq_linux_amd64 is not present"
                 return 253
@@ -36,11 +36,11 @@ adjust_spec_version(){
 
         # Loop through the input file and extract each YAML document and adjust API version \
         #  according to the deployed k8s version
-        until ! (./yq_linux_amd64 read -d${i} ${INPUT_ORIGINAL} apiVersion 1>/dev/null 2>&1);
+        until ! (yq_linux_amd64 read -d${i} ${INPUT_ORIGINAL} apiVersion 1>/dev/null 2>&1);
         do
 
                 # Skip empty YAML documents to avoid nulls in final file
-                YAML_DOC=$(./yq_linux_amd64 read -d${i} ${INPUT_ORIGINAL})
+                YAML_DOC=$(yq_linux_amd64 read -d${i} ${INPUT_ORIGINAL})
                 if [ "${YAML_DOC}" == "null" ]
                 then
                         i=`expr $i + 1`
@@ -52,13 +52,13 @@ adjust_spec_version(){
                 echo "---" >>${OUTPUT}
 
                 # Extract one YAML document
-                ./yq_linux_amd64 read -d${i} ${INPUT_ORIGINAL} >>${OUTPUT}
+                yq_linux_amd64 read -d${i} ${INPUT_ORIGINAL} >>${OUTPUT}
 
                 # Retrieve apiVersion from document
-                API_VERSION=$(./yq_linux_amd64 read -d${j} ${OUTPUT} apiVersion);
+                API_VERSION=$(yq_linux_amd64 read -d${j} ${OUTPUT} apiVersion);
 
                 # Retrieve kind from document
-                KIND=$(./yq_linux_amd64 read -d${j} ${OUTPUT} kind)
+                KIND=$(yq_linux_amd64 read -d${j} ${OUTPUT} kind)
 
                 # Increase document count to extract next document from input file
                 j=`expr $j + 1`
