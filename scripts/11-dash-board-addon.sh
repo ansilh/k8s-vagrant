@@ -35,6 +35,20 @@ do
  wget -q https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/${FILE}
  adjust_spec_version ${FILE}
 done
+
+# Stable API mandatory field
+sed -i '/template/i\  selector: \
+    matchLabels: \
+      task: monitoring \
+      k8s-app: heapster' heapster.yaml
+sed -i '/template/i\  selector: \
+    matchLabels: \
+      task: monitoring \
+      k8s-app: grafana' grafana.yaml 
+sed -i '/template/i\  selector: \
+    matchLabels: \
+      task: monitoring \
+      k8s-app: influxdb' influxdb.yaml
 cd ..
 wget -q https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/rbac/heapster-rbac.yaml
 adjust_spec_version heapster-rbac.yaml
@@ -43,9 +57,14 @@ sed -i 's@--source=kubernetes:https://kubernetes\.default@--source=kubernetes.su
 kubectl create -f dash-board
 kubectl create -f heapster-rbac.yaml
 sleep 10
-wget -q https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
-adjust_spec_version kubernetes-dashboard.yaml
-kubectl create -f kubernetes-dashboard.yaml
+#wget -q https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+#adjust_spec_version kubernetes-dashboard.yaml
+#kubectl create -f kubernetes-dashboard.yaml
+
+wget -q https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta8/aio/deploy/recommended.yaml
+adjust_spec_version recommended.yaml
+kubectl create -f recommended.yaml
+
 kubectl create serviceaccount cluster-admin-dashboard-sa
 kubectl create clusterrolebinding cluster-admin-dashboard-sa \
   --clusterrole=cluster-admin \

@@ -31,7 +31,8 @@ VOLUME="\      - name: hosts\n\        hostPath:\n\         path: /etc/hosts"
 VOLUME_MOUNTS="\        - name: hosts\n\          mountPath: /etc/hosts"
 sed -i "/volumes:/a ${VOLUME}" metrics-server-deployment.yaml
 sed -i "/volumeMounts:/a ${VOLUME_MOUNTS}" metrics-server-deployment.yaml
-
+sed -i '/cert-dir/i\        - --kubelet-insecure-tls \
+        - --kubelet-preferred-address-types=InternalIP' metrics-server-deployment.yaml
 cd ..
 kubectl create -f metric-server/
 
