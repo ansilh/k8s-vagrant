@@ -70,5 +70,5 @@ kubectl create clusterrolebinding cluster-admin-dashboard-sa \
   --clusterrole=cluster-admin \
   --serviceaccount=default:cluster-admin-dashboard-sa
 
-kubectl describe secret $(kubectl get secret | grep cluster-admin-dashboard-sa|awk '{print $1}') |awk '/token/{print $2}' |sudo tee -a ~/ubuntu/.dash_token
+kubectl describe secret $(kubectl get secret | grep cluster-admin-dashboard-sa|awk '{print $1}') |awk '/token/{print $2}' |sudo tee -a /home/ubuntu/.dash_token
 echo "Kubernetes Dashboard token stored in ~/ubuntu/.dash_token on master node"
