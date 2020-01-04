@@ -1,4 +1,4 @@
-:fire: development branch - may be in the middle of a change - use with caution :fire:
+:fire: v1.16.0 branch - may be in the middle of a change - use with caution :fire:
 # Carry a kubernetes cluster in your laptop
 
 This project started for fun while preparing my CKA certification and there is no intention to put this as a serious project. ;)
@@ -10,7 +10,7 @@ This project started for fun while preparing my CKA certification and there is n
   - containerd Version: 1.3.2
   - CRI tool Version: v1.16.0
   - runc Version: v1.0.0-rc6
-  - Calico: v3.8
+  - Calico: v3.11
 * AddOns included
   - MetalLB loadbalancer
   - DashBoard
@@ -25,11 +25,11 @@ This project started for fun while preparing my CKA certification and there is n
   - [Install Vagrant](https://www.vagrantup.com/)
   - Download Vagrant file
 ```
-$ wget https://raw.githubusercontent.com/ansilh/k8s-vagrant/development/Vagrantfile
+$ wget https://raw.githubusercontent.com/ansilh/k8s-vagrant/v1.16.0/Vagrantfile
 ```
  * Download config.yaml file (Modify if needed)
 ```
-$ wget https://raw.githubusercontent.com/ansilh/k8s-vagrant/development/config.yaml
+$ wget https://raw.githubusercontent.com/ansilh/k8s-vagrant/v1.16.0/config.yaml
 ```
  * Execute vagrant up
 ```
@@ -42,6 +42,6 @@ Password: nutanix
 ```
 * Cluster deployment demo (~10mins)
 
- [![Cluster deployment demo](https://raw.githubusercontent.com/ansilh/k8s-vagrant/development/k8s-demo.png)](https://www.youtube.com/watch?v=5bSrwGvdWw0&hd=1 "Cluster deployment demo")
+ [![Cluster deployment demo](https://raw.githubusercontent.com/ansilh/k8s-vagrant/v1.16.0/k8s-demo.png)](https://www.youtube.com/watch?v=5bSrwGvdWw0&hd=1 "Cluster deployment demo")
 
 If you have any input , feel free to reachout [me](https://www.linkedin.com/in/ansil-h-%E2%98%81-48b61415/)
