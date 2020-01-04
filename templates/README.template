@@ -1,4 +1,4 @@
-:fire: {{BRANCH}} branch - may be in the middle of a change - use with caution :fire:
+{{ICON}} {{BRANCH}} branch - {{MSG}} {{ICON}}
 # Carry a kubernetes cluster in your laptop
 
 This project started for fun while preparing my CKA certification and there is no intention to put this as a serious project. ;)
