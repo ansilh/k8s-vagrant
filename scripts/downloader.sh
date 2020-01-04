@@ -12,7 +12,7 @@
 #---------------------------------------------------------------------------------------------------
 
 # To control git url path based on branch
-BRANCH=${2}
+GIT_BASE_URL=${2}
 
 # To store remote file size
 CONTENT_LEN=0
@@ -78,8 +78,8 @@ get_bins(){
 }
 
 # Download version file 
-echo "Downloading ${BRANCH}/VERSIONS"
-get_bins ${BRANCH}/VERSIONS
+echo "Downloading ${GIT_BASE_URL}/VERSIONS"
+get_bins ${GIT_BASE_URL}/VERSIONS
 source VERSIONS
 
 # Display downloaded version file on screen - debugging purpose
@@ -95,7 +95,7 @@ echo
 CFSSL_BIN_BASE="https://pkg.cfssl.org"
 CFSSL_LINUX_URL=${CFSSL_BIN_BASE}"/R1.2/cfssl_linux-${BIN_TYPE}"
 CFSSL_LINUX_JSON_URL=${CFSSL_BIN_BASE}"/R1.2/cfssljson_linux-${BIN_TYPE}"
-
+YQ_URL="https://github.com/mikefarah/yq/releases/download/2.4.1/yq_linux_${BIN_TYPE}"
 # Kubernetes binary URLs 
 K8S_BIN_BASE="https://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}"
 K8S_API_URL="${K8S_BIN_BASE}/bin/linux/${BIN_TYPE}/kube-apiserver"
@@ -106,15 +106,16 @@ K8S_PROXY_URL="${K8S_BIN_BASE}/bin/linux/${BIN_TYPE}/kube-proxy"
 K8S_KUBELET_URL="${K8S_BIN_BASE}/bin/linux/${BIN_TYPE}/kubelet"
 
 # Misc URLs 
-COREDNS_YAML="https://raw.githubusercontent.com/ansilh/kubernetes-the-hardway-virtualbox/master/config/coredns.yaml"
+COREDNS_YAML="https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/coredns.yaml.sed"
 ETCD_URL="https://github.com/coreos/etcd/releases/download/${ETCD_VERSION}/etcd-${ETCD_VERSION}-linux-${BIN_TYPE}.tar.gz"
 CRI_URL="https://github.com/kubernetes-sigs/cri-tools/releases/download/${CRI_TOOLS_VERSION}/crictl-${CRI_TOOLS_VERSION}-linux-${BIN_TYPE}.tar.gz"
 RUNSC_URL="https://storage.googleapis.com/kubernetes-the-hard-way/runsc-50c283b9f56bb7200938d9e207355f05f79f0d17"
 RUNC_URL="https://github.com/opencontainers/runc/releases/download/${RUNC_VERSION}/runc.${BIN_TYPE}"
 CONTAINERD_URL="https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VERSION}/containerd-${CONTAINERD_VERSION}.linux-${BIN_TYPE}.tar.gz"
 CALICO_BASE="https://docs.projectcalico.org/${CALICO_VERSION}/getting-started/kubernetes/installation"
-WORKER_PKI_URL="${BRANCH}/worker-pki.sh"
-
+WORKER_PKI_URL="${GIT_BASE_URL}/worker-pki.sh"
+WORKFLOW_LIB="${GIT_BASE_URL}/libs.sh"
+METALLB="https://raw.githubusercontent.com/google/metallb/v0.7.3/manifests/metallb.yaml"
 # Download binaries based on the node role
 # Master node will also act as worker node , thus more bins for master node
 if [ ${1} == "Master" ]
@@ -122,6 +123,7 @@ then
 	for BIN_URL in  \
 "${CFSSL_LINUX_URL}" \
 "${CFSSL_LINUX_JSON_URL}" \
+"${YQ_URL}" \
 "${K8S_API_URL}" \
 "${K8S_CTR_URL}" \
 "${K8S_SCHED_URL}" \
@@ -136,7 +138,9 @@ then
 "${CALICO_BASE}/hosted/etcd.yaml" \
 "${CALICO_BASE}/hosted/calico.yaml" \
 "${COREDNS_YAML}" \
-"${WORKER_PKI_URL}"
+"${WORKER_PKI_URL}" \
+"${WORKFLOW_LIB}" \
+"${METALLB}"
   do
 		get_bins "${BIN_URL}"
 	done

@@ -13,9 +13,11 @@ echo "[SCRIPT][PKI][INFO] Bin setup."
   chmod +x kubectl
   sudo mv kubectl /usr/local/bin/
   chmod +x cfssl_linux-amd64 cfssljson_linux-amd64
-  sudo  mv cfssl_linux-amd64 /usr/local/bin/cfssl
+  sudo mv cfssl_linux-amd64 /usr/local/bin/cfssl
   sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssljson
   chmod +x worker-pki.sh
+  chmod +x yq_linux_amd64
+  sudo mv yq_linux_amd64 /usr/local/bin/
 }
 echo "[SCRIPT][PKI][INFO] Creating PKI Infrastructure"
 mkdir PKI

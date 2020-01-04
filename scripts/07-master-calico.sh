@@ -8,9 +8,21 @@
 # Date:   11/25/2018
 #----------------------------------------------------
 
+source libs.sh
+adjust_spec_version etcd.yaml
+adjust_spec_version calico.yaml
 # Service IP for Etcd
 sed -i 's/10.96.232.136/172.168.0.10/g' etcd.yaml
+# cat <<EOF >mandatory.yaml
+#   selector:
+#     matchLabels:
+#       k8s-app: calico-etcd
+# EOF
 
+# selector is mandatory for Deployment apps/v1
+sed -i '/template/i\  selector: \
+    matchLabels: \
+      k8s-app: calico-etcd' etcd.yaml
 
 kubectl apply -f etcd.yaml
 

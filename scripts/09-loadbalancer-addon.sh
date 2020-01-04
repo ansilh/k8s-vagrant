@@ -11,7 +11,9 @@
 
 LB_IP_RANGE=$(awk '/ip: /{print $2}' ~/.k8sconfig |head -1|awk -F "." '{print $1"."$2"."$3".200-"$1"."$2"."$3".250"}')
 
-kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.7.3/manifests/metallb.yaml
+source libs.sh
+adjust_spec_version metallb.yaml
+kubectl apply -f metallb.yaml
 
 cat <<EOF |kubectl apply -f -
 apiVersion: v1

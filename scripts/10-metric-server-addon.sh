@@ -9,6 +9,8 @@
 # Date:   12/04/2018
 #----------------------------------------------------
 
+source libs.sh
+
 YAMLS="auth-delegator.yaml
 auth-reader.yaml
 metrics-apiservice.yaml
@@ -22,13 +24,15 @@ cd metric-server
 for FILE in ${YAMLS}
 do
   wget -q https://raw.githubusercontent.com/kubernetes-incubator/metrics-server/master/deploy/1.8%2B/${FILE}
+  adjust_spec_version ${FILE}
 done
 
 VOLUME="\      - name: hosts\n\        hostPath:\n\         path: /etc/hosts"
 VOLUME_MOUNTS="\        - name: hosts\n\          mountPath: /etc/hosts"
 sed -i "/volumes:/a ${VOLUME}" metrics-server-deployment.yaml
 sed -i "/volumeMounts:/a ${VOLUME_MOUNTS}" metrics-server-deployment.yaml
-
+sed -i '/cert-dir/i\        - --kubelet-insecure-tls \
+        - --kubelet-preferred-address-types=InternalIP' metrics-server-deployment.yaml
 cd ..
 kubectl create -f metric-server/
 
