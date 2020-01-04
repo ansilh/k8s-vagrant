@@ -1,4 +1,4 @@
-:fire: v1.16.0 branch - may be in the middle of a change - use with caution :fire:
+:white_check_mark: v1.16.0 branch -  :white_check_mark:
 # Carry a kubernetes cluster in your laptop
 
 This project started for fun while preparing my CKA certification and there is no intention to put this as a serious project. ;)
