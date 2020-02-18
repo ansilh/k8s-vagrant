@@ -21,7 +21,7 @@ CONTENT_LEN=0
 get_file_size(){
   URL=${1}
   echo -e "Trying to download \n ${1} \n"
-  CONTENT_LEN=$(curl -sLIXGET $URL | awk '/^Content-Length:/{print $2}'| tr -d '\r')
+  CONTENT_LEN=$(curl -sLIXGET $URL | awk '/^Content-Length:/{print $2}'| tail -1 |tr -d '\r')
 }
 
 # Intiate download and send the download job to background
