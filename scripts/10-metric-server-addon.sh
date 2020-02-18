@@ -11,7 +11,8 @@
 
 source libs.sh
 
-YAMLS="auth-delegator.yaml
+YAMLS="aggregated-metrics-reader.yaml
+auth-delegator.yaml
 auth-reader.yaml
 metrics-apiservice.yaml
 metrics-server-deployment.yaml
@@ -23,7 +24,8 @@ cd metric-server
 
 for FILE in ${YAMLS}
 do
-  wget -q https://raw.githubusercontent.com/kubernetes-incubator/metrics-server/master/deploy/1.8%2B/${FILE}
+#  wget -q https://raw.githubusercontent.com/kubernetes-incubator/metrics-server/master/deploy/1.8%2B/${FILE}
+  wget -q raw.githubusercontent.com/kubernetes-sigs/metrics-server/master/deploy/kubernetes/${FILE}
   adjust_spec_version ${FILE}
 done
 
